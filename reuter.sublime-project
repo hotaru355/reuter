@@ -1,0 +1,24 @@
+{
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": "."
+		}
+	],
+    "settings": {
+        "tab_size": 4,
+        "less2css": {
+            "lessBaseDir": "/var/www/reuter/src/less",
+            "outputDir": "/var/www/reuter/public/css",
+            "outputFile": "site.css",
+            "minify": false,
+            "minName": false,
+            "autoCompile": true,
+            "showErrorWithWindow": true,
+            "main_file": "/var/www/reuter/src/less/reuter.less",
+            "ignorePrefixedFiles": false
+        }
+    }
+
+}

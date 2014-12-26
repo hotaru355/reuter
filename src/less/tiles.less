@@ -1,10 +1,10 @@
 @tile-border-color: grey;
-@tile-background-color: darkgrey;
+@tile-greyed-color: darkgrey;
 
 @tile-fadeout-time: 1.5s;
 
 @num-cols-lg: 10;
-@num-rows-lg: 5;
+@num-rows-lg: 6;
 
 @num-cols-md: 8;
 @num-rows-md: 5;
@@ -34,10 +34,11 @@
 	border: 0px @tile-border-color solid;
 	border-bottom-width: 1px;
 	border-left-width: 1px;
-	background-color: @tile-background-color;
-	.transition(@tile-fadeout-time background-color ease-out);
-	&.transparent {
-		background-color: rgba(255, 255, 255, 0.0);
+	background-color: rgba(255, 255, 255, 0.0);
+	.transition-property(background-color);
+	.transition-timing-function(ease-out);
+	&.greyed {
+		background-color: @tile-greyed-color;
 	}
 }
 
@@ -106,7 +107,7 @@
 	#tile-@{rows}-@{i} {
 		top: (@rows * 100px);
 		left: (@i * 100px);
-		.transition-delay(@delay * @tile-fadeout-time);
+		//.transition-delay(@delay * @tile-fadeout-time);
 	}
 	.tile-columns(@rows, @cols, (@i + 1));
 }
@@ -136,11 +137,32 @@
 	&::after {
 		content: 'Unsere Kunden';
 	}
-	&:hover,
+}
+.tile-about-us-hover-0,
+.tile-about-us-hover-1,
+.tile-about-us-hover-2 {
 	&.hover {
-		color: green;
+		background-color: blue;
 	}
 }
+
+.tile-customers-hover-0,
+.tile-work-hover-0,
+.tile-contact-hover-0,
+.tile-values-hover-0,
+.tile-about-us-hover-0 {
+	.transition-delay(e("0.1s"));
+	.transition-duration(e("0s"));
+}
+.tile-customers-hover-1 {
+	.transition-delay(e("0.2s"));
+	.transition-duration(e("0s"));
+}
+.tile-customers-hover-2 {
+	.transition-delay(e("0.3s"));
+	.transition-duration(e("0s"));
+}
+
 .tile-work {
 	background-color: green;
 	&::after {

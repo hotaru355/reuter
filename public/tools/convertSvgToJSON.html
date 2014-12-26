@@ -1,0 +1,55 @@
+<html>
+<head>
+	<script type="text/javascript" src="../js/libs/jquery/jquery.1.11.1.min.js"></script>
+	<script type="text/javascript" src="Snap.svg-0.3.0/dist/snap.svg.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$('#svg-export').get(0).addEventListener("load", function() {
+			var groups = $($('#svg-export').get(0).contentDocument).find('svg > g');
+			var font = {};
+			var width = {};
+
+			groups.each(function (index) {
+				var letter = $(this).attr('inkscape:label');
+				console.log(letter);
+				if (letter && letter.substring(2) == 'path') {
+					letter = letter[0];
+					font[letter] = {
+						vectors: []
+					};
+					$(this).find('path').each(function() {
+						var relPath = '';
+						Snap.path.toRelative($(this).attr('d')).forEach(function(point) {
+							if (point[0] === 'M') {
+								point[0] = 'm';
+							}
+							relPath += point.join(' ');
+						})
+						font[letter].vectors.push({
+							path: relPath,
+							length: +this.getTotalLength().toFixed(3),
+							strokeWidth: +(+$(this).attr('style').match(/stroke-width:(\d+(.\d+)?)/i)[1]).toFixed(1)
+						})
+					})
+				} else if (letter && letter.length == 1) {
+					var paths = $(this).find('path');
+					var d0 = paths.get(0).attributes.d.value, d1 = paths.get(1).attributes.d.value;
+					var x0 = d0.substring(d0.indexOf(' '), d0.indexOf(',')), x1 = d1.substring(d1.indexOf(' '), d1.indexOf(','));
+					width[letter] = parseFloat(x1) - parseFloat(x0);
+				}
+			})
+			Object.keys(font).forEach(function(letter) {
+				font[letter].width = +width[letter].toFixed(3);
+			})
+			$('#output').html(JSON.stringify(font));
+			$('#svg-export').hide();
+		})
+	})
+
+	</script>
+</head>
+<body>
+	<object id="svg-export" type="image/svg+xml" data="paths_export.svg"></object>
+	<p id="output"></p>
+</body>
+</html>

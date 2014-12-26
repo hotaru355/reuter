@@ -44,25 +44,59 @@ define([
 			}
 		},
 
-		getCornerTiles: function(menuTile, gridDimensions) {
-			var idParts = menuTile.attr('id').split('-');
+		isValidRow: function(row) {
+			return row >= 0 && row < this.getDimension().rows;
+		},
+
+		isValidCol: function(col) {
+			return col >= 0 && col < this.getDimension().cols;
+		},
+
+		getCornerTilesUnique: function(menuTileId) {
+			var idParts = menuTileId.split('-');
 			var row = parseInt(idParts[1]);
 			var col = parseInt(idParts[2]);
 			var corners = [];
-			[-1, 1].forEach(function(rowPrefix) {
-				[-1, 1].forEach(function(colPrefix) {
-					if ((row + rowPrefix >= 0)
-						&& (row + rowPrefix <= gridDimensions.rows)
-						&& (col + colPrefix >= 0)
-						&& (col + colPrefix <= gridDimensions.cols)) {
-						corners.push(
-							'tile-' + (row + rowPrefix) + '-' + col,
-							'tile-' + (row + rowPrefix) + '-' + (col + colPrefix),
-							'tile-' + row + '-' + (col + colPrefix)
-						);
+			var rowInc, colInc, flip;
+			var self = this;
+			[1, -1].forEach(function(colPrefix) {
+				[-1 * colPrefix, 1 * colPrefix].forEach(function(rowPrefix) {
+					flip = (colPrefix * rowPrefix == -1);
+					rowInc = row + (flip ? rowPrefix : 0);
+					colInc = col + (!flip ? colPrefix : 0);
+					if (self.isValidRow(rowInc) && self.isValidCol(colInc)) {
+						corners.push('tile-' + rowInc + '-' + colInc);
+					}
+					rowInc = row + rowPrefix;
+					colInc = col + colPrefix;
+					if (self.isValidRow(rowInc) && self.isValidCol(colInc)) {
+						corners.push('tile-' + rowInc + '-' + colInc);
 					}
 				})
 			})
+
+			return corners;
+		},
+
+		getCornerTiles: function(menuTileId) {
+			var idParts = menuTileId.split('-');
+			var row = parseInt(idParts[1]);
+			var col = parseInt(idParts[2]);
+			var corners = [];
+			var rowInc, colInc, flip;
+			var self = this;
+			[1, -1].forEach(function(colPrefix) {
+				[1, -1].forEach(function(rowPrefix) {
+					if (self.isValidRow(row + rowPrefix) && self.isValidCol(col + colPrefix)) {
+						corners.push([
+							'tile-' + row + '-' + (col + colPrefix),
+							'tile-' + (row + rowPrefix) + '-' + (col + colPrefix),
+							'tile-' + (row + rowPrefix) + '-' + col,
+						]);
+					}
+				})
+			})
+
 			return corners;
 		}
 	};

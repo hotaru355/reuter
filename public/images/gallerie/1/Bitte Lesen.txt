@@ -1,0 +1,3 @@
+Groß: 443x443 imageX
+Klein: 95x95  imageX_
+Riesig: 1280x(Seitenverhältnis beibehalten) imageX__

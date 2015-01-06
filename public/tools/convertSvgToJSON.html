@@ -8,6 +8,7 @@
 			var groups = $($('#svg-export').get(0).contentDocument).find('svg > g');
 			var font = {};
 			var width = {};
+			var lineHight;
 
 			groups.each(function (index) {
 				var letter = $(this).attr('inkscape:label');
@@ -36,12 +37,27 @@
 					var d0 = paths.get(0).attributes.d.value, d1 = paths.get(1).attributes.d.value;
 					var x0 = d0.substring(d0.indexOf(' '), d0.indexOf(',')), x1 = d1.substring(d1.indexOf(' '), d1.indexOf(','));
 					width[letter] = parseFloat(x1) - parseFloat(x0);
+				} else if (letter && letter == 'line height') {
+					var paths = $(this).find('path');
+					var d0 = paths.get(0).attributes.d.value, d1 = paths.get(1).attributes.d.value;
+					var y0 = d0.substring(d0.indexOf(',')+1, d0.indexOf(' ', d0.indexOf(','))),
+						y1 = d1.substring(d1.indexOf(',')+1, d1.indexOf(' ', d1.indexOf(',')));
+					lineHight = parseFloat(y1) - parseFloat(y0);
+				} else if (letter && letter == 'space') {
+					var paths = $(this).find('path');
+					var d0 = paths.get(0).attributes.d.value, d1 = paths.get(1).attributes.d.value;
+					var x0 = d0.substring(d0.indexOf(' '), d0.indexOf(',')), x1 = d1.substring(d1.indexOf(' '), d1.indexOf(','));
+					width[' '] = parseFloat(x1) - parseFloat(x0);
 				}
 			})
 			Object.keys(font).forEach(function(letter) {
 				font[letter].width = +width[letter].toFixed(3);
 			})
-			$('#output').html(JSON.stringify(font));
+			font[' '] = {
+				vectors: [],
+				width: +(width[' '] - width['a']).toFixed(3)
+			}
+			$('#output').html(JSON.stringify(font) + '/nvar lineHight = ' + lineHight);
 			$('#svg-export').hide();
 		})
 	})

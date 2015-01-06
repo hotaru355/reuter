@@ -2,20 +2,16 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    'app/menu',
     'app/index'
-], function($, _, Backbone, Index) {
+], function($, _, Backbone, menu, index) {
 
     var IndexView = Backbone.View.extend({
         el: "#page",
 
         render: function() {
-            // $('.menu li').removeClass('active');
-            // $('.menu li a[href="' + window.location.hash + '"]').parent().addClass('active');
-            //this.$el.html(gridTemplate);
-
-            Index.displayMenu(
-            Index.fadeInOut2(true));
-
+            index.displayMenu('.tile-table');
+            menu.init(0);
 
         }
     });

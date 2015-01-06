@@ -7,73 +7,57 @@ $tile-greyed-color: darkgrey;
 
 $tile-fadeout-time: 1.5s;
 
-$num-cols-lg: 10;
-$num-rows-lg: 6;
-
-$num-cols-md: 8;
-$num-rows-md: 5;
-
-$num-cols-sm: 6;
-$num-rows-sm: 4;
-
-$num-cols-xs: 5;
-$num-rows-xs: 4;
-
 // the grid
-.tile-container {
+
+.tile-table {
 	position: relative;
+	display: table;
 	top: 100px;
 	left: 100px;
 	border: 0px $tile-border-color solid;
-	border-top-width: 1px;
-	border-right-width: 1px;
-	background-image: url('/images/tiles-index.jpg');
+	border-left-width: 1px;
+	border-bottom-width: 1px;
 	background-size: cover;
 	@media (min-width: $screen-lg-min) {
-		width: $num-cols-lg * 100px;
-		height: $num-rows-lg * 100px;
+		width: $screen-lg-min;
+		height: $screen-lg-min / 8 * 6;
 	}
 	@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
-		width: $num-cols-md * 100px;
-		height: $num-rows-md * 100px;
+		width: $screen-md-min;
+		height: $screen-md-min / 8 * 6;
 	}
 	@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-		width: $num-cols-sm * 100px;
-		height: $num-rows-sm * 100px;
+		width: $screen-sm-min;
+		height: $screen-sm-min / 8 * 6;
 	}
-	@media (min-width: $screen-xs-min) and (max-width: $screen-xs-max) {
-		width: $num-cols-xs * 100px;
-		height: $num-rows-xs * 100px;
+	@media (max-width: $screen-xs-max) {
+		width: $screen-xs-min;
+		height: $screen-xs-min / 8 * 6;
 	}
+}
+
+.bg-start {
+	background-image: url('/images/tiles-index.jpg');
 }
 
 // a tile
 .tile {
-	position: absolute;
-	width: 100px;
-	height: 100px;
+	@extend .tile-cell;
 
-	border: 0px $tile-border-color solid;
-	border-bottom-width: 1px;
-	border-left-width: 1px;
 	background-color: rgba(255, 255, 255, 0.0);
 	@include transition-property(background-color);
 	@include transition-timing-function(ease-out);
-	&.greyed {
-		background-color: $tile-greyed-color;
-	}
 }
 
 // absolute postitioning by id
-@for $row from 0 to $num-rows-lg {
-	@for $col from 0 to $num-cols-lg {
-		#tile-#{$row}-#{$col} {
-			top: $row * 100px;
-			left: $col * 100px;
-			//.transition-delay(@delay * @tile-fadeout-time);
-		}
-	}
-}
+// @for $row from 0 to $num-rows-lg {
+// 	@for $col from 0 to $num-cols-lg {
+// 		#tile-#{$row}-#{$col} {
+// 			// top: $row * 100px;
+// 			// left: $col * 100px;
+// 		}
+// 	}
+// }
 
 
 /**
@@ -81,19 +65,19 @@ $num-rows-xs: 4;
  */
 
 %bg-customers {
-    background-color: blue;
+    background-color: $color-customers;
 }
 %bg-work {
-    background-color: green;
+    background-color: $color-work;
 }
 %bg-contact {
-    background-color: purple;
+    background-color: $color-contact;
 }
 %bg-values {
-    background-color: tomato;
+    background-color: $color-values;
 }
 %bg-aboutus {
-    background-color: darkred;
+    background-color: $color-aboutus;
 }
 
 
@@ -103,9 +87,8 @@ $num-rows-xs: 4;
 .tile-values,
 .tile-aboutus {
 	text-align: center;
-	line-height: 100px;
+//	line-height: 100px;
 	color: white;
-	// transition(none);
 	&:hover,
 	&.hover {
 		background-color: rgba(255, 255, 255, 0.0);
@@ -119,6 +102,7 @@ $num-rows-xs: 4;
 	}
 }
 
+$menu-count: 1;
 @each $menu in customers,work,contact,values,aboutus {
 	.tile-#{$menu} {
 		@extend %bg-#{$menu};
@@ -132,10 +116,65 @@ $num-rows-xs: 4;
 			}
 		}
 	}
+
+	.nav-#{$menu} {
+		&:hover, &.selected {
+			@extend %bg-#{$menu};
+		}
+		& > .nav-deco {
+			@extend %bg-#{$menu};
+		}
+		&.nav-disabled {
+			& > .nav-deco {
+				display: none;
+			}
+			& > a {
+				display: none;
+			}
+		}
+	}
+	$menu-count: $menu-count+1;
 }
 
+.nav-start {
+}
 
+.nav-row {
+	display: table-row;
+	height: 5%;
+	background-color: #333333;
+	text-align: center;
+	font-family: 'Oswald', sans-serif;
+	& a {
+		height: 100%;
+		width: 100%;
+		color: white;
+		text-decoration: none;
+	}
+	& .tile-cell {
+//		vertical-align: bottom;
+	}
+	& .nav-deco {
+		position: absolute;
+		width: 100%;
+		height: 4px;
+		bottom: 0px;
+	}
+}
 
+.tile-row {
+	display: table-row;
+	height: 10%;
+}
+.tile-cell {
+	display: table-cell;
+	position: relative;
+	width: 12.5%;
+	vertical-align: middle;
+	border: 0px $tile-border-color solid;
+	border-top-width: 1px;
+	border-right-width: 1px;
+}
 // @media (min-width: $screen-lg-min) {
 // 	.tile-container {
 // 		width: $num-cols-lg * 100px;
@@ -197,6 +236,8 @@ $num-rows-xs: 4;
 
 .blind {
 	position: absolute;
+	top: 0;
+	left: 0;
 	width: 100%;
 	height: 100%;
 	background-color: darkgrey;
@@ -204,3 +245,23 @@ $num-rows-xs: 4;
 	@include rotateY(0deg);
 	@include transition(all 2s);
 }
+
+.content-tile {
+	background-color: rgba(255,255,255,0.5);
+	border-top-color: darkgrey;
+	border-right-color: darkgrey;
+}
+
+@each $menu in start,customers,work,contact,values,aboutus {
+	.bg-#{$menu} {
+		background-image: url('/images/' + $menu + '-background.jpg');
+	}
+}
+
+#page {
+	position: absolute;
+	left: 30%;
+	top: 20%;
+	z-index: 1;
+}
+

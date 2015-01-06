@@ -5,14 +5,15 @@ define([
   'views/index',
   'views/contact',
   'views/values',
+  'views/aboutus',
   'bootstrap',
-], function($, _, Backbone, IndexView, ContactView, ValuesView) {
+], function($, _, Backbone, IndexView, ContactView, ValuesView, AboutUsView) {
 
   var AppRouter = Backbone.Router.extend({
     routes: {
       '': 'showIndex',
       'unsere-kunden': 'showCustomers',
-      'unsere-arbeit': 'showWork',
+      'unsere-arbeiten': 'showWork',
       'kontakt': 'showContact',
       'unsere-werte': 'showValues',
       'ueber-uns': 'showAboutUs'
@@ -47,7 +48,7 @@ define([
         contactView.render();
     });
     app_router.on('route:showAboutUs', function(){
-        var contactView = new ContactView();
+        var contactView = new AboutUsView();
         contactView.render();
     });
 

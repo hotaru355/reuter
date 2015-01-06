@@ -32,19 +32,7 @@ define([
 
 		},
 
-		fadeInOut2: function(isIn) {
-			var tiles = $('.blind');
-			tiles.each(function() {
-				$(this).css({
-					'transition-delay': +Math.random().toFixed(2) * 1 + 1 +'s',
-					'transition-duration': '0.5s',
-					opacity: 0,
-					transform: 'rotateY(90deg)'
-				});
-			});
-		},
-
-		displayMenu: function(onDone) {
+		displayMenu: function(containerSelector) {
 			var menuTiles = [{
 				className: 'customers',
 				label: 'Unsere Kunden',
@@ -66,7 +54,7 @@ define([
 				label: 'Über uns',
 				url: 'ueber-uns'
 			}];
-			var container = $('.tile-container');
+			var container = $(containerSelector);
 
 			var dim = Grid.getDimension();
 			var availableTileIds = [];
@@ -88,11 +76,15 @@ define([
 				});
 				container.find('#' + menuId)
 					.addClass('tile-' + menu.className)
-					.append('<a href="#/' + menu.url + '"><div>' + menu.label + '</div></a>')
+					.append('<span>' + menu.label + '</span>')
+					// .append('<a href="#/' + menu.url + '"><div>' + menu.label + '</div></a>')
 					.hover(function() {
 						$('#' + hoverIds.join(',#')).addClass('hover-' + menu.className);
 					}, function() {
 						$('#' + hoverIds.join(',#')).removeClass('hover-' + menu.className);
+					})
+					.click(function() {
+						window.location.href = '#/' + menu.url;
 					});
 
 				// remove corner tiles from availble
@@ -103,8 +95,6 @@ define([
 					}
 				});
 			});
-
-			onDone.apply();
 		}
 	};
 

@@ -5,42 +5,15 @@ define([
 ], function($, Grid) {
 
 	var Index = {
-		fadeInOut: function(isIn) {
-			var tiles = $('.tile-container > div' + Grid.getExcludeTileSelector());
-			tiles.addClass('greyed');
-			$('.tile-container')[0].offsetHeight;
-			tiles.each(function() {
-				$(this).css({
-					'transition-delay': +Math.random().toFixed(2) * 2 + 's',
-					'transition-duration': '0.5s'
-				});
-			});
-			setTimeout(function() {
-				tiles.removeClass('greyed');
-			}, 1000);
-			setTimeout(function() {
-				tiles.each(function() {
-					$(this).css({
-						'transition-delay': '',
-						'transition-duration': ''
-					});
-				});
-			}, 3000);
-			tiles.each(function() {
-				//	$(this).css({'transition' : 'none'})
-			})
-
-		},
-
-		displayMenu: function(containerSelector) {
+		randomizeMenu : function(containerSelector) {
 			var menuTiles = [{
 				className: 'customers',
 				label: 'Unsere Kunden',
-				url: 'kunden',
+				url: 'unsere-kunden',
 			}, {
 				className: 'work',
-				label: 'Unsere Arbeit',
-				url: 'unsere-arbeit'
+				label: 'Unsere Arbeiten',
+				url: 'unsere-arbeiten/raum'
 			}, {
 				className: 'contact',
 				label: 'Kontakt',
@@ -52,18 +25,19 @@ define([
 			}, {
 				className: 'aboutus',
 				label: 'Über uns',
-				url: 'ueber-uns'
+				url: 'ueber-uns/frank-reuter'
 			}];
 			var container = $(containerSelector);
 
-			var dim = Grid.getDimension();
+			// generate all ids first
 			var availableTileIds = [];
-			for (var row = 0; row < dim.rows; row++) {
-				for (var col = 0; col < dim.cols; col++) {
+			for (var row = 0; row < 5; row++) {
+				for (var col = 0; col < 8; col++) {
 					availableTileIds.push('tile-' + row + '-' + col);
 				}
 			}
 
+			// randomly place menu tiles
 			menuTiles.forEach(function(menu) {
 				var randIndex = Math.floor(Math.random() * availableTileIds.length);
 				var menuId = availableTileIds.splice(randIndex, 1)[0];
@@ -76,15 +50,15 @@ define([
 				});
 				container.find('#' + menuId)
 					.addClass('tile-' + menu.className)
-					.append('<span>' + menu.label + '</span>')
-					// .append('<a href="#/' + menu.url + '"><div>' + menu.label + '</div></a>')
+					// .append('<span>' + menu.label + '</span>')
+					.append('<a href="#/' + menu.url + '">' + menu.label + '</a>')
 					.hover(function() {
 						$('#' + hoverIds.join(',#')).addClass('hover-' + menu.className);
 					}, function() {
 						$('#' + hoverIds.join(',#')).removeClass('hover-' + menu.className);
 					})
 					.click(function() {
-						window.location.href = '#/' + menu.url;
+						//window.location.href = '#/' + menu.url;
 					});
 
 				// remove corner tiles from availble

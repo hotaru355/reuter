@@ -36,18 +36,18 @@ $body-bg:               #fff !default;
 $text-color:            $gray-dark !default;
 
 //** Global textual link color.
-$link-color:            $brand-primary !default;
+$link-color:            inherit !default;
 //** Link hover color set via `darken()` function.
-$link-hover-color:      darken($link-color, 15%) !default;
+$link-hover-color:      $link-color !default;
 //** Link hover decoration.
-$link-hover-decoration: underline !default;
+$link-hover-decoration: none !default;
 
 
 //== Typography
 //
 //## Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-sans-serif:  "PT Sans Caption", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
 $font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
@@ -71,7 +71,7 @@ $line-height-computed:    floor(($font-size-base * $line-height-base)) !default;
 
 //** By default, this inherits from the `<body>`.
 $headings-font-family:    inherit !default;
-$headings-font-weight:    500 !default;
+$headings-font-weight:    600 !default;
 $headings-line-height:    1.1 !default;
 $headings-color:          inherit !default;
 
@@ -520,17 +520,18 @@ $state-danger-border:            darken(adjust-hue($state-danger-bg, -10), 5%) !
 //##
 
 //** Tooltip max width
-$tooltip-max-width:           200px !default;
+$tooltip-max-width:           300px !default;
 //** Tooltip text color
-$tooltip-color:               #fff !default;
+$tooltip-color:               #000 !default;
 //** Tooltip background color
-$tooltip-bg:                  #000 !default;
+$tooltip-bg:                  #fff !default;
 $tooltip-opacity:             .9 !default;
 
 //** Tooltip arrow width
-$tooltip-arrow-width:         5px !default;
+$tooltip-arrow-width:         15px !default;
 //** Tooltip arrow color
-$tooltip-arrow-color:         $tooltip-bg !default;
+$tooltip-arrow-color:         #ff0000;
+// $tooltip-bg !default;
 
 
 //== Popovers

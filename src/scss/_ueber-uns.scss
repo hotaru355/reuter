@@ -1,0 +1,50 @@
+.team-foto {
+	display: inline;
+	width: 127px;
+	height: 176px;
+	float: right;
+	border: 1px solid black;
+	border-radius: 5px;
+	margin: 0 0 30px 30px;
+}
+
+.team-list {
+	padding: 0;
+	& li {
+		display: block;
+		min-height: 208px;
+		margin-top: 40px;
+	}
+}
+
+.company-chronicle {
+	dt {
+		width: 20%;
+		float: left;
+	}
+	dd {
+		width: 80%;
+		float: left;
+		margin-bottom: 15px;
+	}
+}
+
+.nondeco-list {
+	list-style-type: none;
+}
+
+.partner-image-half {
+	width: 40%;
+	margin: 30px 0;
+	border: black 1px solid;
+}
+
+.partner-image-full {
+	width: 90%;
+	margin: 30px 0;
+	border: black 1px solid;
+}
+
+#ohne-uns-vid, #lebensaufgabe-vid {
+	height: 100%;
+}

@@ -3,3 +3,19 @@ $color-work: #679A00;
 $color-contact: #9868CC;
 $color-values: #FF9934;
 $color-aboutus: #CC0000;
+
+%bg-customers {
+    background-color: $color-customers;
+}
+%bg-work {
+    background-color: $color-work;
+}
+%bg-contact {
+    background-color: $color-contact;
+}
+%bg-values {
+    background-color: $color-values;
+}
+%bg-aboutus {
+    background-color: $color-aboutus;
+}

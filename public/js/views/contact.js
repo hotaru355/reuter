@@ -2,19 +2,19 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'app/index'
-], function($, _, Backbone, Index) {
+    'app/menu',
+    'text!/partials/contact.html'
+], function($, _, Backbone, menu, contactPartial) {
 
     var ContactView = Backbone.View.extend({
         el: "#page",
+
         render: function() {
-            $('.menu li').removeClass('active');
-            $('.menu li a[href="' + window.location.hash + '"]').parent().addClass('active');
-            //this.$el.html(gridTemplate);
+            var self = this;
 
-            Index.displayMenu();
-
-
+            menu.init(5, null, function() {
+                self.$el.html(contactPartial);
+            });
         }
     });
 

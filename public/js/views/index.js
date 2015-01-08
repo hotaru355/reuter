@@ -10,9 +10,11 @@ define([
         el: "#page",
 
         render: function() {
-            index.displayMenu('.tile-table');
-            menu.init(0);
-
+            var self = this;
+            menu.init(0, null, function() {
+                self.$el.html('');
+                index.randomizeMenu('.tile-table');
+            });
         }
     });
 

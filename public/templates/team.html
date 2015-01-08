@@ -1,0 +1,26 @@
+<h2>Das Team</h2>
+<div class="content-scroller">
+	<ul class="team-list">
+<% 	employees.forEach(function(employee) { %>
+		<li>
+			<img class="team-foto" src="images/team/<%= employee.image %>" alt="<%= employee.name %>" />
+			<h5><%= employee.name %></h5>
+			<p><%= employee.title %><br><%= employee.bio %></p>
+			<p>
+<% 		if (employee.exp) { %>
+				<%= employee.exp %> Jahre Berufserfahrung<br>
+<% 		}
+		if (employee.expInHouse) { %>
+				<%= employee.expInHouse %> bei Reuter und Sohn
+<% 		} %>
+			</p>
+<% 		if (employee.specialty) { %>
+			<p><em>Spezialgebiet:</em> <%= employee.specialty %></p>
+<%		}
+		if (employee.favorite) { %>
+			<p><em>Lieblingsarbeit: </em> <%= employee.favorite %></p>
+<%		} %>
+		</li>
+<% 	}); %>
+	</ul>
+</div>

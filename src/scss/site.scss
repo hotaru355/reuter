@@ -1,11 +1,12 @@
 @import "bootstrap.scss";
 @import url(http://fonts.googleapis.com/css?family=Oswald);
-@import url(http://fonts.googleapis.com/css?family=Shadows+Into+Light);
-@import url(http://fonts.googleapis.com/css?family=Didact+Gothic&subset=latin,latin-ext);
-//@import url(http://fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic);
 
+@import url(http://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700);
+@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700);
 
 
 @import "variables.scss";
 @import "tiles.scss";
+@import "menu.scss";
+@import "ueber-uns.scss";
 @import "unsere-werte.scss";

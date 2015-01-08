@@ -1,55 +1,20 @@
 define([
 	'jquery',
-	'app/utils/responsive',
 	'bootstrap'
-], function($, Responsive) {
+], function($) {
 
 	var Grid = {
-		getExcludeTileSelector: function() {
-			var mediaSize = Responsive.getMediaSize();
-
-			var excludedSelector = '';
-			var excludedSizes = Responsive.mediaSizes.slice(Responsive.mediaSizes.indexOf(mediaSize) + 1);
-			if (excludedSizes.length) {
-				excludedSelector = ':not(' + excludedSizes.map(function(size) {
-					return '.show-' + size;
-				}).join(',') + ')';
-			}
-			return excludedSelector;
-		},
-
-		getDimension: function() {
-			var mediaSize = Responsive.getMediaSize();
-				switch (mediaSize) {
-				case 'lg':
-					return {
-						rows: 6,
-						cols: 10
-					};
-				case 'md':
-					return {
-						rows: 5,
-						cols: 8
-					};
-				case 'sm':
-					return {
-						rows: 4,
-						cols: 6
-					};
-				case 'xs':
-					return {
-						rows: 4,
-						cols: 6
-					};
-			}
+		dimension: {
+			rows: 5,
+			cols: 8
 		},
 
 		isValidRow: function(row) {
-			return row >= 0 && row < this.getDimension().rows;
+			return row >= 0 && row < this.dimension.rows;
 		},
 
 		isValidCol: function(col) {
-			return col >= 0 && col < this.getDimension().cols;
+			return col >= 0 && col < this.dimension.cols;
 		},
 
 		getCornerTilesUnique: function(menuTileId) {

@@ -8,230 +8,102 @@ $tile-greyed-color: darkgrey;
 $tile-fadeout-time: 1.5s;
 
 // the grid
-
 .tile-table {
 	position: relative;
 	display: table;
-	top: 100px;
-	left: 100px;
+	top: 0;
+	left: 0;
 	border: 0px $tile-border-color solid;
 	border-left-width: 1px;
 	border-bottom-width: 1px;
 	background-size: cover;
-	@media (min-width: $screen-lg-min) {
-		width: $screen-lg-min;
-		height: $screen-lg-min / 8 * 6;
-	}
-	@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
-		width: $screen-md-min;
-		height: $screen-md-min / 8 * 6;
-	}
-	@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-		width: $screen-sm-min;
-		height: $screen-sm-min / 8 * 6;
-	}
-	@media (max-width: $screen-xs-max) {
-		width: $screen-xs-min;
-		height: $screen-xs-min / 8 * 6;
-	}
+	width: 100%;
+	height: 100%;
 }
 
-.bg-start {
-	background-image: url('/images/tiles-index.jpg');
-}
-
-// a tile
-.tile {
-	@extend .tile-cell;
-
-	background-color: rgba(255, 255, 255, 0.0);
-	@include transition-property(background-color);
-	@include transition-timing-function(ease-out);
-}
-
-// absolute postitioning by id
-// @for $row from 0 to $num-rows-lg {
-// 	@for $col from 0 to $num-cols-lg {
-// 		#tile-#{$row}-#{$col} {
-// 			// top: $row * 100px;
-// 			// left: $col * 100px;
-// 		}
-// 	}
-// }
-
-
-/**
- * menu tiles
- */
-
-%bg-customers {
-    background-color: $color-customers;
-}
-%bg-work {
-    background-color: $color-work;
-}
-%bg-contact {
-    background-color: $color-contact;
-}
-%bg-values {
-    background-color: $color-values;
-}
-%bg-aboutus {
-    background-color: $color-aboutus;
-}
-
-
-.tile-customers,
-.tile-work,
-.tile-contact,
-.tile-values,
-.tile-aboutus {
-	text-align: center;
-//	line-height: 100px;
-	color: white;
-	&:hover,
-	&.hover {
-		background-color: rgba(255, 255, 255, 0.0);
-	}
-	a {
-		color: inherit;
-		&:hover,
-		&.hover {
-			text-decoration: none;
-		}
-	}
-}
-
-$menu-count: 1;
-@each $menu in customers,work,contact,values,aboutus {
-	.tile-#{$menu} {
-		@extend %bg-#{$menu};
-	}
-	@for $index from 1 through 3 {
-		.tile-#{$menu}-hover-#{$index - 1} {
-			@include transition-duration(0s);
-			@include transition-delay($index * 0.1s);
-			&.hover-#{$menu} {
-				@extend %bg-#{$menu};
-			}
-		}
-	}
-
-	.nav-#{$menu} {
-		&:hover, &.selected {
-			@extend %bg-#{$menu};
-		}
-		& > .nav-deco {
-			@extend %bg-#{$menu};
-		}
-		&.nav-disabled {
-			& > .nav-deco {
-				display: none;
-			}
-			& > a {
-				display: none;
-			}
-		}
-	}
-	$menu-count: $menu-count+1;
-}
-
-.nav-start {
-}
-
-.nav-row {
-	display: table-row;
-	height: 5%;
-	background-color: #333333;
-	text-align: center;
-	font-family: 'Oswald', sans-serif;
-	& a {
-		height: 100%;
-		width: 100%;
-		color: white;
-		text-decoration: none;
-	}
-	& .tile-cell {
-//		vertical-align: bottom;
-	}
-	& .nav-deco {
-		position: absolute;
-		width: 100%;
-		height: 4px;
-		bottom: 0px;
-	}
-}
-
+// a row of the grid
 .tile-row {
 	display: table-row;
 	height: 10%;
 }
-.tile-cell {
+
+// half hight nav row
+.nav-row {
+	display: table-row;
+	height: 5%;
+	color: white;
+	background-color: #333333;
+	font-family: 'Oswald', sans-serif;
+
+	& a, & .nav-deco-bottom, & .nav-deco-top {
+		opacity: 1;
+		@include transition(opacity 1s);
+	}
+
+	&.faded-out {
+		& a, & .nav-deco-bottom, & .nav-deco-top {
+			opacity: 0;
+		}
+	}
+	&:not(.faded-out) {
+		@each $menu in customers, work, contact, values, aboutus {
+			.nav-#{$menu} {
+				// cursor: pointer;
+				&:hover, &.selected {
+					@extend %bg-#{$menu};
+				}
+			}
+		}
+	}
+}
+
+// a tile
+.tile {
 	display: table-cell;
 	position: relative;
 	width: 12.5%;
-	vertical-align: middle;
 	border: 0px $tile-border-color solid;
 	border-top-width: 1px;
 	border-right-width: 1px;
+	// background-color: transparent;
+
+	& a {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 100%;
+	}
 }
-// @media (min-width: $screen-lg-min) {
-// 	.tile-container {
-// 		width: $num-cols-lg * 100px;
-// 		height: $num-rows-lg * 100px;
-// 	}
-// 	.show-xs,
-// 	.show-sm,
-// 	.show-md,
-// 	.show-lg {
-// 		display: block;
-// 	}
-// }
 
-// @media(min-width: @screen-md-min) and (max-width: @screen-md-max) {
-// 	.tile-container {
-// 		width: (@num-cols-md * 100px);
-// 		height: (@num-rows-md * 100px);
-// 	}
-// 	.show-lg {
-// 		display: none;
-// 	}
-// 	.show-md,
-// 	.show-sm,
-// 	.show-xs {
-// 		display: block;
-// 	}
-// }
+.tile-row-span {
+	@extend .tile;
+	border-right-width: 0;
+}
 
-// @media(min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-// 	.tile-container {
-// 		width: (@num-cols-sm * 100px);
-// 		height: (@num-rows-sm * 100px);
-// 	}
-// 	.show-lg,
-// 	.show-md {
-// 		display: none;
-// 	}
-// 	.show-sm,
-// 	.show-xs {
-// 		display: block;
-// 	}
-// }
 
-// @media(min-width: @screen-xs-min) and (max-width: @screen-xs-max) {
-// 	.tile-container {
-// 		width: (@num-cols-xs * 100px);
-// 		height: (@num-rows-xs * 100px);
-// 	}
-// 	.show-lg,
-// 	.show-md,
-// 	.show-sm {
-// 		display: none;
-// 	}
-// 	.show-xs {
-// 		display: block;
-// 	}
-// }
+
+// deco bar
+.nav-deco {
+	position: absolute;
+	width: 100%;
+	height: 4px;
+}
+.nav-deco-bottom {
+	@extend .nav-deco;
+	bottom: 0px;
+}
+.nav-deco-top {
+	@extend .nav-deco;
+	top: 0px;
+}
+@each $menu in customers, work, contact, values, aboutus {
+	.nav-#{$menu} {
+		& > .nav-deco-bottom, & > .nav-deco-top {
+			@extend %bg-#{$menu};
+		}
+	}
+}
 
 
 .blind {
@@ -242,6 +114,7 @@ $menu-count: 1;
 	height: 100%;
 	background-color: darkgrey;
 	opacity: 1;
+	z-index: 100;
 	@include rotateY(0deg);
 	@include transition(all 2s);
 }
@@ -250,18 +123,5 @@ $menu-count: 1;
 	background-color: rgba(255,255,255,0.5);
 	border-top-color: darkgrey;
 	border-right-color: darkgrey;
-}
-
-@each $menu in start,customers,work,contact,values,aboutus {
-	.bg-#{$menu} {
-		background-image: url('/images/' + $menu + '-background.jpg');
-	}
-}
-
-#page {
-	position: absolute;
-	left: 30%;
-	top: 20%;
-	z-index: 1;
 }
 

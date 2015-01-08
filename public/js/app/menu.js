@@ -1,9 +1,47 @@
 define([
 	'jquery',
-	'bootstrap'
-], function($) {
+	'app/utils/grid'
+], function($, Grid) {
 
 	var navItems = ['start','aboutus','values','work','customers','contact'];
+
+	var submenu = {
+	 	aboutus: [{
+			label: 'Frank Reuter',
+			url: 'ueber-uns',
+		}, {
+			label: 'Assistenz',
+			url: 'ueber-uns/assistenz',
+		}, {
+			label: 'Das Team',
+			url: 'ueber-uns/team',
+		}, {
+			label: 'Chronik',
+			url: 'ueber-uns/chronik',
+		}, {
+			label: 'Partner',
+			url: 'ueber-uns/partner',
+		}, {
+			label: 'ohne uns',
+			url: 'ueber-uns/ohne-uns',
+		}, {
+			label: 'Lebensaufgabe',
+			url: 'ueber-uns/lebensaufgabe',
+		}],
+		work: [{
+			label: 'Farbe im Raum',
+			url: 'unsere-arbeiten/raum',
+		}, {
+			label: 'Farbe im Aussenbereich',
+			url: 'unsere-arbeiten/aussenbereich',
+		}, {
+			label: 'Leistuns- spektrum',
+			url: 'unsere-arbeiten/leistungsspektrum',
+		}, {
+			label: 'Presse- stimmen',
+			url: 'unsere-arbeiten/pressestimmen',
+		}]
+	};
 
 	var selector = {
 		tileTable: '.tile-table',
@@ -13,34 +51,66 @@ define([
 		navTile: '.nav-tile'
 	}
 
-	var fadeInOut = function(isIn) {
-		var tiles = $('.blind');
-		tiles.each(function() {
+	var fadeInOut = function(isIn, onFaded) {
+		var delayRange = 1;
+		var duration = 0.5;
+		var blinds = $('.blind');
+		blinds.each(function() {
 			$(this).css({
-				'transition-delay': +Math.random().toFixed(2) * 1 + 1 +'s',
-				'transition-duration': '0.5s',
+				'transition-delay': +Math.random().toFixed(2) * delayRange +'s',
+				'transition-duration': duration + 's',
 				opacity: isIn ? 0 : 1,
 				transform: isIn ? 'rotateY(90deg)' : 'rotateY(0deg)'
 			});
 		});
+
+		// hack: transition one blind last and listen to event
+		// var lastBlind = Math.floor(Math.random() * blinds.length);
+		// $('.blind:eq(' + lastBlind + ')').css({
+		// 	'transition-delay': delayRange + 0.1 +'s',
+		// }).one($.support.transition.end, onFaded);
+
+		setTimeout(onFaded, (delayRange + duration) * 1000);
 	};
-	var highlightNav = function(navIndex) {
-			var navs = $(selector.navRow + ' > .tile-cell');
-			navs.each(function(index) {
-				if (navIndex == 0) {
-					if (index > 0) {
-						$(this).addClass('nav-disabled');
-					}
+	var setNavs = function(navIndex, subNavIndex) {
+		if (navIndex == 0) {
+			$('#nav-main').addClass('faded-out');
+		} else {
+			$('#nav-main').removeClass('faded-out');
+
+			$('#nav-main > .tile').each(function(index) {
+				if (navIndex == index) {
+					$(this).addClass('selected');
 				} else {
-					$(this).removeClass('nav-disabled');
-					if (navIndex == index) {
-						$(this).addClass('selected');
-					} else {
-						$(this).removeClass('selected');
-					}
+					$(this).removeClass('selected');
 				}
 			});
-		};
+		}
+		var subnavs = [];
+		switch (navIndex) {
+			case 1:
+				subnavs = submenu.aboutus;
+				break;
+			case 3:
+				subnavs = submenu.work;
+				break;
+			default:
+				break;
+		}
+		
+		$('#nav-sub a').remove();
+		$('#nav-sub > .tile').each(function(index) {
+			$(this).attr('class', 'tile');
+			if (index < subnavs.length) {
+				$(this).addClass('nav-' + navItems[navIndex])
+				.append('<a href="#/' + subnavs[index].url + '">' + subnavs[index].label + '</a>');
+				if (subNavIndex == index) {
+					$(this).addClass('selected');
+				}
+			}
+		})
+
+	};
 	var setBackground = function(navIndex){
 			$(selector.tileTable).css({
 				'background-image': 'url("/images/hintergrund/background-' + navItems[navIndex] + '.jpg")'
@@ -50,8 +120,10 @@ define([
 	var addContentTiles = function() {
 		var startFrom = [2,3,3,3,5];
 		var rows = $(selector.tileRow);
+		$('.tile-row a').remove();
 		rows.each(function(rowIndex) {
 			$(this).find('.tile').each(function(colIndex) {
+				$(this).attr('class', 'tile')
 				if (colIndex >= startFrom[rowIndex]) {
 					$(this).addClass('content-tile');
 				}
@@ -66,34 +138,24 @@ define([
 			});
 		});
 	};
-	var getIndex = function() {
-		var navs = $(selector.navRow + ' > .tile-cell');
-		var index = 0;
-		navs.each(function(tmpIndex) {
-			if ($(this).hasClass('selected')) {
-				index = tmpIndex;
-			}
-		});
-		return index;
-	};
+
+
 	var Menu = {
-		init: function(navIndex) {
-			var lastNavIndex = getIndex();
-			if (navIndex != lastNavIndex) {
-				fadeInOut(false);
-				setTimeout(function() {
-					highlightNav(navIndex);
-					setBackground(navIndex);
-					if (navIndex == 0 && lastNavIndex != 0) {
-						removeContentTiles();
-					}
-					if (navIndex != 0 && lastNavIndex == 0) {
-						addContentTiles();
-					}
-					fadeInOut(true);
-					
-				}, 2000);
-			}
+		init: function(navIndex, subNavIndex, onFadedOut, onFadedIn) {
+			setNavs(navIndex, subNavIndex);
+			fadeInOut(false, function() {
+				setBackground(navIndex);
+				if (navIndex == 0) {
+					removeContentTiles();
+					//randomizeMenu('.tile-table')
+				} else {
+					addContentTiles();
+				}
+				if (onFadedOut) {
+					onFadedOut.call();
+				}
+				fadeInOut(true, onFadedIn);
+			});
 		},
 	};
 

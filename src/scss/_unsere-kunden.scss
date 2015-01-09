@@ -1,0 +1,24 @@
+.customers-list {
+	li {
+		position: relative;
+		margin: 8% 0;
+	}
+	img {
+		width: 45%;
+		margin: 0 2%;
+		@include box-shadow(3px 3px 10px 1px);
+		border: white 1px solid;
+	}
+}
+
+.desc-right {
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	margin: 0;
+}
+
+.desc-bottom {
+	text-align: center;
+	margin: 10px 0 0 0;
+}

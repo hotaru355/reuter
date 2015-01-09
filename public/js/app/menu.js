@@ -1,14 +1,23 @@
 define([
-	'jquery',
-	'app/utils/grid'
-], function($, Grid) {
+	'jquery'
+], function($) {
 
 	var navItems = ['start','aboutus','values','work','customers','contact'];
+	var imagesByNavIndex = [
+		['background-start.jpg'],
+		['background-aboutus.jpg', 'background-aboutus.jpg', 'background-aboutus.jpg',
+			'background-aboutus.jpg', 'background-aboutus.jpg', 'background-aboutus.jpg',
+			'background-aboutus.jpg'],
+		['background-values.jpg'],
+		[null, null, 'background-spectrum.jpg', 'background-press.jpg'],
+		['background-customers.jpg'],
+		['background-contact.jpg'],
+	];
 
 	var submenu = {
 	 	aboutus: [{
 			label: 'Frank Reuter',
-			url: 'ueber-uns',
+			url: 'ueber-uns/frank-reuter',
 		}, {
 			label: 'Assistenz',
 			url: 'ueber-uns/assistenz',
@@ -111,11 +120,14 @@ define([
 		})
 
 	};
-	var setBackground = function(navIndex){
+	var setBackground = function(navIndex, subNavIndex) {
+		var imgUrl = imagesByNavIndex[navIndex][subNavIndex];
+		if (imgUrl) {
 			$(selector.tileTable).css({
-				'background-image': 'url("/images/hintergrund/background-' + navItems[navIndex] + '.jpg")'
+				'background-image': 'url("/images/hintergrund/' + imgUrl + '")'
 			})
-		};
+		}
+	};
 
 	var addContentTiles = function() {
 		var startFrom = [2,3,3,3,5];
@@ -144,12 +156,13 @@ define([
 		init: function(navIndex, subNavIndex, onFadedOut, onFadedIn) {
 			setNavs(navIndex, subNavIndex);
 			fadeInOut(false, function() {
-				setBackground(navIndex);
+				setBackground(navIndex, subNavIndex);
 				if (navIndex == 0) {
 					removeContentTiles();
-					//randomizeMenu('.tile-table')
+					$('#page').hide();
 				} else {
 					addContentTiles();
+					$('#page').show();
 				}
 				if (onFadedOut) {
 					onFadedOut.call();

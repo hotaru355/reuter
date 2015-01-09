@@ -1,8 +1,8 @@
 <h2>Das Team</h2>
 <div class="content-scroller">
-	<ul class="team-list">
+	<ul class="nondeco-list">
 <% 	employees.forEach(function(employee) { %>
-		<li>
+		<li class="team-list">
 			<img class="team-foto" src="images/team/<%= employee.image %>" alt="<%= employee.name %>" />
 			<h5><%= employee.name %></h5>
 			<p><%= employee.title %><br><%= employee.bio %></p>

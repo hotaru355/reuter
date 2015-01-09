@@ -48,7 +48,6 @@ $tile-fadeout-time: 1.5s;
 	&:not(.faded-out) {
 		@each $menu in customers, work, contact, values, aboutus {
 			.nav-#{$menu} {
-				// cursor: pointer;
 				&:hover, &.selected {
 					@extend %bg-#{$menu};
 				}
@@ -120,8 +119,8 @@ $tile-fadeout-time: 1.5s;
 }
 
 .content-tile {
-	background-color: rgba(255,255,255,0.5);
-	border-top-color: darkgrey;
-	border-right-color: darkgrey;
+	background-color: rgba(255,255,255,0.8);
+	border-top-color: rgba(233, 233, 233, 0.5);
+	border-right-color: rgba(233, 233, 233, 0.5);
 }
 

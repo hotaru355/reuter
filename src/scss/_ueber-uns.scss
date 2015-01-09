@@ -3,18 +3,16 @@
 	width: 127px;
 	height: 176px;
 	float: right;
-	border: 1px solid black;
+	// border: 1px solid black;
 	border-radius: 5px;
+	@include box-shadow(0 0 20px 3px darkgray);
 	margin: 0 0 30px 30px;
 }
 
 .team-list {
-	padding: 0;
-	& li {
-		display: block;
-		min-height: 208px;
-		margin-top: 40px;
-	}
+	display: block;
+	min-height: 208px;
+	margin-bottom: 40px;
 }
 
 .company-chronicle {
@@ -31,6 +29,7 @@
 
 .nondeco-list {
 	list-style-type: none;
+	padding: 0;
 }
 
 .partner-image-half {

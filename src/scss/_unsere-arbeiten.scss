@@ -1,0 +1,45 @@
+.work-detail {
+	position: absolute;
+	display: block;
+	width: 80%;
+	left: 10%;
+	opacity: 1;
+	border: white 1px solid;
+	@include box-shadow(0 0 25px 0);
+	@include transition(opacity 1s);
+	&.faded-out {
+		opacity: 0;
+	}
+}
+
+.thumb {
+	width: 100%;
+	height: 100%;
+	opacity: 1;
+	@include transition-property(opacity);
+	@include transition-duration(2s);
+	&.faded-out {
+		opacity: 0;
+	}
+}
+
+@for $index from 0 through 15 {
+	.fade-in-rand-#{$index} {
+		$delay: $index * 100ms + random(100);
+		@include transition-delay($delay);
+	}
+}
+
+.checkmark-list {
+	list-style-image: url('/images/checkmark.svg');
+	li {
+		margin-bottom: 10px;
+	}
+}
+
+.megaphone-list {
+	list-style-image: url('/images/megaphone.svg');
+	li {
+		margin-bottom: 10px;
+	}
+}

@@ -3,6 +3,7 @@ define([
 ], function($) {
 
 	var navItems = ['start','aboutus','values','work','customers','contact'];
+
 	var imagesByNavIndex = [
 		['background-start.jpg'],
 		['background-aboutus.jpg', 'background-aboutus.jpg', 'background-aboutus.jpg',
@@ -15,6 +16,10 @@ define([
 	];
 
 	var submenu = {
+		start: [],
+		values: [],
+		customers: [],
+		contact: [],
 	 	aboutus: [{
 			label: 'Frank Reuter',
 			url: 'ueber-uns/frank-reuter',
@@ -82,6 +87,9 @@ define([
 		setTimeout(onFaded, (delayRange + duration) * 1000);
 	};
 	var setNavs = function(navIndex, subNavIndex) {
+		var navItem = navItems[navIndex];
+
+		// main nav
 		if (navIndex == 0) {
 			$('#nav-main').addClass('faded-out');
 		} else {
@@ -95,44 +103,60 @@ define([
 				}
 			});
 		}
-		var subnavs = [];
-		switch (navIndex) {
-			case 1:
-				subnavs = submenu.aboutus;
-				break;
-			case 3:
-				subnavs = submenu.work;
-				break;
-			default:
-				break;
-		}
-		
-		$('#nav-sub a').remove();
-		$('#nav-sub > .tile').each(function(index) {
-			$(this).attr('class', 'tile');
-			if (index < subnavs.length) {
-				$(this).addClass('nav-' + navItems[navIndex])
-				.append('<a href="#/' + subnavs[index].url + '">' + subnavs[index].label + '</a>');
-				if (subNavIndex == index) {
-					$(this).addClass('selected');
+
+		// sub nav
+		var subnavs = submenu[navItem];
+		// only redraw sub nav if different to previous
+		if (! $('#nav-sub .tile:first-child').hasClass('nav-' + navItem)) {
+			$('#nav-sub').addClass('faded-out'); // fade out
+			setTimeout(function() {
+				$('#nav-sub a:not(.mail-icon)').remove();
+				$('#nav-sub > .tile').each(function(index) {
+					$(this).attr('class', 'tile'); // clear previous navs
+					if (index < subnavs.length) {
+						$(this).addClass('nav-' + navItem)
+						.append('<a href="#/' + subnavs[index].url + '">' + subnavs[index].label + '</a>');
+						if (subNavIndex == index) {
+							$(this).addClass('selected');
+						}
+					}
+				});
+				$('#nav-sub')[0].offsetHeight;
+				$('#nav-sub').removeClass('faded-out'); // fade in
+			}, 1000);
+		} else {
+			$('#nav-sub > .tile').each(function(index) {
+				$(this).attr('class', 'tile'); // clear previous navs
+				if (index < subnavs.length) {
+					$(this).addClass('nav-' + navItem)
+					if (subNavIndex == index) {
+						$(this).addClass('selected');
+					}
 				}
-			}
-		})
+			});
+		}
+
+		// logo
+		$('.logo-background').attr('class', 'logo-background')
+			.addClass('nav-' + navItem)
+			.addClass('selected');
 
 	};
 	var setBackground = function(navIndex, subNavIndex) {
+		subNavIndex = subNavIndex || 0;
 		var imgUrl = imagesByNavIndex[navIndex][subNavIndex];
+		var fullUrl = 'none';
 		if (imgUrl) {
-			$(selector.tileTable).css({
-				'background-image': 'url("/images/hintergrund/' + imgUrl + '")'
-			})
+			fullUrl = 'url("/images/hintergrund/' + imgUrl + '")';
 		}
+		$(selector.tileTable).css({
+			'background-image': fullUrl
+		})
 	};
 
 	var addContentTiles = function() {
 		var startFrom = [2,3,3,3,5];
 		var rows = $(selector.tileRow);
-		$('.tile-row a').remove();
 		rows.each(function(rowIndex) {
 			$(this).find('.tile').each(function(colIndex) {
 				$(this).attr('class', 'tile')
@@ -150,13 +174,16 @@ define([
 			});
 		});
 	};
-
+	var removeLinks = function() {
+		$('.tile-row a').remove();
+	}
 
 	var Menu = {
 		init: function(navIndex, subNavIndex, onFadedOut, onFadedIn) {
 			setNavs(navIndex, subNavIndex);
 			fadeInOut(false, function() {
 				setBackground(navIndex, subNavIndex);
+				removeLinks();
 				if (navIndex == 0) {
 					removeContentTiles();
 					$('#page').hide();

@@ -23,6 +23,10 @@
 	}
 }
 
+.thumb-container:hover {
+	opacity: 0.6;
+}
+
 @for $index from 0 through 15 {
 	.fade-in-rand-#{$index} {
 		$delay: $index * 100ms + random(100);

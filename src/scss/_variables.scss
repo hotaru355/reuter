@@ -19,3 +19,19 @@ $color-aboutus: #CC0000;
 %bg-aboutus {
     background-color: $color-aboutus;
 }
+
+%bg-semi-customers {
+    background-color: rgba($color-customers, 0.8);
+}
+%bg-semi-work {
+    background-color: rgba($color-work, 0.8);
+}
+%bg-semi-contact {
+    background-color: rgba($color-contact, 0.8);
+}
+%bg-semi-values {
+    background-color: rgba($color-values, 0.8);
+}
+%bg-semi-aboutus {
+    background-color: rgba($color-aboutus, 0.8);
+}

@@ -43,7 +43,6 @@
 	font-family: 'Oswald', sans-serif;
 	text-align: center;
 	color: white;
-	opacity: 0.8;
 	&:hover,
 	&.hover {
 		background-color: transparent;
@@ -52,24 +51,29 @@
 
 @each $menu in customers, work, contact, values, aboutus {
 	.tile-#{$menu} {
-		@extend %bg-#{$menu};
+		@extend %bg-semi-#{$menu};
 	}
 	@for $index from 1 through 3 {
 		.tile-#{$menu}-hover-#{$index - 1} {
 			@include transition-duration(0s);
 			@include transition-delay($index * 0.1s);
 			&.hover-#{$menu} {
-				@extend %bg-#{$menu};
+				@extend %bg-semi-#{$menu};
 			}
 		}
 	}
 
 }
 
-@each $menu in start,customers,work,contact,values,aboutus {
-	.bg-#{$menu} {
-		background-image: url('/images/' + $menu + '-background.jpg');
+.logo-background {
+	width: 200%;
+	height: 100%;
+	@include transition(background-color 2s);
+	img {
+		width: 100%;
 	}
 }
 
-
+.mail-icon img {
+	width: 20%;
+}

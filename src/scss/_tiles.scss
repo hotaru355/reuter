@@ -2,37 +2,36 @@
  * Tiles in the grid
  */
 
+$grid-background-color: #333333;
 $tile-border-color: grey;
-$tile-greyed-color: darkgrey;
 
 $tile-fadeout-time: 1.5s;
 
 // the grid
 .tile-table {
 	position: relative;
-	display: table;
 	top: 0;
 	left: 0;
+	width: 100%;
+	height: 100%;
 	border: 0px $tile-border-color solid;
 	border-left-width: 1px;
 	border-bottom-width: 1px;
 	background-size: cover;
-	width: 100%;
-	height: 100%;
 }
 
 // a row of the grid
 .tile-row {
-	display: table-row;
-	height: 10%;
+	height: percentage(1/6);
+	width: 100%;
 }
 
 // half hight nav row
 .nav-row {
-	display: table-row;
-	height: 5%;
+	height: percentage(1/12);
+	width: 100%;
 	color: white;
-	background-color: #333333;
+	background-color: $grid-background-color;
 	font-family: 'Oswald', sans-serif;
 
 	& a, & .nav-deco-bottom, & .nav-deco-top {
@@ -41,9 +40,14 @@ $tile-fadeout-time: 1.5s;
 	}
 
 	&.faded-out {
-		& a, & .nav-deco-bottom, & .nav-deco-top {
+		& .nav-deco-bottom, & .nav-deco-top {
 			opacity: 0;
 		}
+		& a {
+			opacity: 0;
+			pointer-events: none;
+			cursor: default;
+   		}
 	}
 	&:not(.faded-out) {
 		@each $menu in customers, work, contact, values, aboutus {
@@ -58,13 +62,13 @@ $tile-fadeout-time: 1.5s;
 
 // a tile
 .tile {
-	display: table-cell;
 	position: relative;
 	width: 12.5%;
+	height: 100%;
+	float: left;
 	border: 0px $tile-border-color solid;
 	border-top-width: 1px;
 	border-right-width: 1px;
-	// background-color: transparent;
 
 	& a {
 		display: flex;
@@ -86,7 +90,7 @@ $tile-fadeout-time: 1.5s;
 .nav-deco {
 	position: absolute;
 	width: 100%;
-	height: 4px;
+	height: 10%;
 }
 .nav-deco-bottom {
 	@extend .nav-deco;
@@ -109,13 +113,14 @@ $tile-fadeout-time: 1.5s;
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: darkgrey;
+	width: 101%;
+	height: 101%;
+	background-color: $grid-background-color;
 	opacity: 1;
 	z-index: 100;
 	@include rotateY(0deg);
 	@include transition(all 2s);
+	border: $tile-border-color 1px solid;
 }
 
 .content-tile {

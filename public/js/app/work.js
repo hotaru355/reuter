@@ -11,7 +11,7 @@ define([
 					var rand = Math.floor(Math.random() * randIndexes.length);
 					var randIndex = randIndexes[rand];
 					randIndexes.splice(rand, 1);
-					$(this).append('<a href="javascript:"><img class="thumb faded-out fade-in-rand-'
+					$(this).append('<a class="thumb-container" href="javascript:"><img class="thumb faded-out fade-in-rand-'
 						+ randIndex + '" src="' + src + '" /></a>');
 				})
 			})

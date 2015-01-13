@@ -50,16 +50,12 @@ define([
 				});
 				container.find('#' + menuId)
 					.addClass('tile-' + menu.className)
-					// .append('<span>' + menu.label + '</span>')
-					.append('<a href="#/' + menu.url + '">' + menu.label + '</a>')
+					.append('<a class="menu-link" href="#/' + menu.url + '">' + menu.label + '</a>')
 					.hover(function() {
 						$('#' + hoverIds.join(',#')).addClass('hover-' + menu.className);
 					}, function() {
 						$('#' + hoverIds.join(',#')).removeClass('hover-' + menu.className);
 					})
-					.click(function() {
-						//window.location.href = '#/' + menu.url;
-					});
 
 				// remove corner tiles from availble
 				Grid.getCornerTilesUnique(menuId).forEach(function(cornerId) {

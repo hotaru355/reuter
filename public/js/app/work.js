@@ -15,7 +15,7 @@ define([
 						+ randIndex + '" src="' + src + '" /></a>');
 				})
 			})
-			$('.tile-row a').click(function() {
+			$('.thumb-container').click(function() {
 				var src = $(this).find('img').attr('src').replace('_', '');
 				var visible = $('.work-detail:not(.faded-out)');
 				$('.work-detail.faded-out').attr('src', src)

@@ -1,3 +1,10 @@
+$screen-multiplicator: 96px;
+$screen-xs-factor: 5; // 480px for a 480px screen
+$screen-sm-factor: 6; // 576px for a 768px screen
+$screen-md-factor: 8; // 768px for a 992px screen
+$screen-lg-factor: 10; // 960px for a 1200px+ screen
+
+
 $color-customers: #3399CA;
 $color-work: #679A00;
 $color-contact: #9868CC;

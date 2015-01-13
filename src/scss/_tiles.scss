@@ -4,35 +4,86 @@
 
 $grid-background-color: #333333;
 $tile-border-color: grey;
+$tile-border-width: 1px;
 
 $tile-fadeout-time: 1.5s;
 
 // the grid
 .tile-table {
 	position: relative;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+	margin: 0 auto;
+	@media (min-width: $screen-lg-min) {
+		top: 10%;
+		width: $screen-multiplicator * $screen-lg-factor + $tile-border-width;
+		height: $screen-multiplicator * $screen-lg-factor / 8 * 6 + $tile-border-width;
+	}
+	@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+		top: 10%;
+		width: $screen-multiplicator * $screen-md-factor + $tile-border-width;
+		height: $screen-multiplicator * $screen-md-factor / 8 * 6 + $tile-border-width;
+	}
+	@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+		top: 10%;
+		width: $screen-multiplicator * $screen-sm-factor + $tile-border-width;
+		height: $screen-multiplicator * $screen-sm-factor / 8 * 6 + $tile-border-width;
+	}
+	@media (max-width: $screen-xs-max) {
+		top: 0;
+		width: $screen-multiplicator * $screen-xs-factor + $tile-border-width;
+		height: $screen-multiplicator * $screen-xs-factor / 8 * 5 + $tile-border-width;
+	}
 	border: 0px $tile-border-color solid;
-	border-left-width: 1px;
-	border-bottom-width: 1px;
+	border-left-width: $tile-border-width;
+	border-bottom-width: $tile-border-width;
 	background-size: cover;
 }
 
 // a row of the grid
 .tile-row {
+	@media (max-width: $screen-xs-max) {
+		height: percentage(1/5);
+	}
 	height: percentage(1/6);
 	width: 100%;
 }
 
 // half hight nav row
 .nav-row {
+	@media (max-width: $screen-xs-max) {
+		position: fixed;
+		left: -150px;
+		height: 100%;
+		width: 150px;
+		transition: left 2s;
+		z-index: 1000;
+		&.slided-out {
+			left: 0;
+		}
+		.tile {
+			width: 100%;
+			height: 30px;
+			float: none;
+		}
+		& > .tile:last-child {
+			position: absolute;
+			bottom: 0;
+		}
+		.nav-link:first-child {
+			padding-left: 5px;
+			justify-content: flex-start;
+		}
+		.nav-aboutus .nav-link:first-child, .nav-work .nav-link:first-child {
+			width: 80%;
+			float: left;
+		}
+	}
+
 	height: percentage(1/12);
 	width: 100%;
 	color: white;
 	background-color: $grid-background-color;
 	font-family: 'Oswald', sans-serif;
+	z-index: 100;
 
 	& a, & .nav-deco-bottom, & .nav-deco-top {
 		opacity: 1;
@@ -60,6 +111,14 @@ $tile-fadeout-time: 1.5s;
 	}
 }
 
+.nav-link, .menu-link {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+}
+
 // a tile
 .tile {
 	position: relative;
@@ -67,17 +126,10 @@ $tile-fadeout-time: 1.5s;
 	height: 100%;
 	float: left;
 	border: 0px $tile-border-color solid;
-	border-top-width: 1px;
-	border-right-width: 1px;
-
-	& a {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		height: 100%;
-	}
+	border-top-width: $tile-border-width;
+	border-right-width: $tile-border-width;
 }
+
 
 .tile-row-span {
 	@extend .tile;
@@ -87,25 +139,43 @@ $tile-fadeout-time: 1.5s;
 
 
 // deco bar
-.nav-deco {
+.nav-deco-bottom {
 	position: absolute;
 	width: 100%;
 	height: 10%;
-}
-.nav-deco-bottom {
-	@extend .nav-deco;
 	bottom: 0px;
 }
 .nav-deco-top {
-	@extend .nav-deco;
+	position: absolute;
+	width: 100%;
+	height: 10%;
 	top: 0px;
+}
+.nav-deco-left {
+	position: absolute;
+	top: 0;
+	width: 3px;
+	height: 100%;
+	margin-left: 5px;
 }
 @each $menu in customers, work, contact, values, aboutus {
 	.nav-#{$menu} {
-		& > .nav-deco-bottom, & > .nav-deco-top {
+		.nav-deco-bottom, .nav-deco-top, .nav-deco-left {
 			@extend %bg-#{$menu};
 		}
 	}
+}
+@each $menu in work, aboutus {
+	#nav-sub-#{$menu} {
+		max-height: 100%;
+		@include transition(max-height 1s);
+		.nav-link {
+			padding-left: 15px;
+		}
+	}
+}
+.collapsed {
+	max-height: 0;
 }
 
 

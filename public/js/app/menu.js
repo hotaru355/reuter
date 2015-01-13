@@ -2,7 +2,7 @@ define([
 	'jquery'
 ], function($) {
 
-	var navItems = ['start','aboutus','values','work','customers','contact'];
+	var navItems = ['nav-start','nav-aboutus','nav-values','nav-work','nav-customers','nav-contact'];
 
 	var imagesByNavIndex = [
 		['background-start.jpg'],
@@ -95,7 +95,7 @@ define([
 		} else {
 			$('#nav-main').removeClass('faded-out');
 
-			$('#nav-main > .tile').each(function(index) {
+			$('#nav-main .tile:not(.hidden-greater-sm)').each(function(index) {
 				if (navIndex == index) {
 					$(this).addClass('selected');
 				} else {
@@ -105,17 +105,17 @@ define([
 		}
 
 		// sub nav
-		var subnavs = submenu[navItem];
+		var subnavs = submenu[navItem.substr(4)];
 		// only redraw sub nav if different to previous
-		if (! $('#nav-sub .tile:first-child').hasClass('nav-' + navItem)) {
+		if (! $('#nav-sub .tile:first-child').hasClass(navItem)) {
 			$('#nav-sub').addClass('faded-out'); // fade out
 			setTimeout(function() {
 				$('#nav-sub a:not(.mail-icon)').remove();
-				$('#nav-sub > .tile').each(function(index) {
+				$('#nav-sub .tile:not(.hidden-greater-sm)').each(function(index) {
 					$(this).attr('class', 'tile'); // clear previous navs
 					if (index < subnavs.length) {
-						$(this).addClass('nav-' + navItem)
-						.append('<a href="#/' + subnavs[index].url + '">' + subnavs[index].label + '</a>');
+						$(this).addClass(navItem)
+						.append('<a class="nav-link" href="#/' + subnavs[index].url + '">' + subnavs[index].label + '</a>');
 						if (subNavIndex == index) {
 							$(this).addClass('selected');
 						}
@@ -128,7 +128,7 @@ define([
 			$('#nav-sub > .tile').each(function(index) {
 				$(this).attr('class', 'tile'); // clear previous navs
 				if (index < subnavs.length) {
-					$(this).addClass('nav-' + navItem)
+					$(this).addClass(navItem)
 					if (subNavIndex == index) {
 						$(this).addClass('selected');
 					}
@@ -137,8 +137,8 @@ define([
 		}
 
 		// logo
-		$('.logo-background').attr('class', 'logo-background')
-			.addClass('nav-' + navItem)
+		$('.logo-background').removeClass(navItems.join(' '))
+			.addClass(navItem)
 			.addClass('selected');
 
 	};
@@ -175,8 +175,8 @@ define([
 		});
 	};
 	var removeLinks = function() {
-		$('.tile-row a').remove();
-	}
+		$('.tile-row .menu-link,.thumb-container').remove();
+	};
 
 	var Menu = {
 		init: function(navIndex, subNavIndex, onFadedOut, onFadedIn) {
@@ -187,9 +187,13 @@ define([
 				if (navIndex == 0) {
 					removeContentTiles();
 					$('#page').hide();
+					$('.menu-icon').hide();
 				} else {
 					addContentTiles();
 					$('#page').show();
+					$('.menu-icon').css({
+						display: 'flex'
+					});
 				}
 				if (onFadedOut) {
 					onFadedOut.call();

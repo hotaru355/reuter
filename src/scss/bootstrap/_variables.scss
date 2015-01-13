@@ -279,37 +279,32 @@ $zindex-modal:             1040 !default;
 //== Media queries breakpoints
 //
 //## Define the breakpoints at which your layout will change, adapting to different screen sizes.
-$screen-multiplicator: 96px;
 
 // Extra small screen / phone
-$screen-xs-factor: 6;
 //** Deprecated `$screen-xs` as of v3.0.1
-$screen-xs:                  $screen-xs-factor * $screen-multiplicator !default;
+$screen-xs:                  480px !default;
 //** Deprecated `$screen-xs-min` as of v3.2.0
 $screen-xs-min:              $screen-xs !default;
 //** Deprecated `$screen-phone` as of v3.0.1
 $screen-phone:               $screen-xs-min !default;
 
 // Small screen / tablet
-$screen-sm-factor: 8;
 //** Deprecated `$screen-sm` as of v3.0.1
-$screen-sm:                  $screen-sm-factor * $screen-multiplicator !default;
+$screen-sm:                  768px !default;
 $screen-sm-min:              $screen-sm !default;
 //** Deprecated `$screen-tablet` as of v3.0.1
 $screen-tablet:              $screen-sm-min !default;
 
 // Medium screen / desktop
-$screen-md-factor: 10;
 //** Deprecated `$screen-md` as of v3.0.1
-$screen-md:                  $screen-md-factor * $screen-multiplicator !default;
+$screen-md:                  992px !default;
 $screen-md-min:              $screen-md !default;
 //** Deprecated `$screen-desktop` as of v3.0.1
 $screen-desktop:             $screen-md-min !default;
 
 // Large screen / wide desktop
-$screen-lg-factor: 12;
 //** Deprecated `$screen-lg` as of v3.0.1
-$screen-lg:                  $screen-lg-factor * $screen-multiplicator !default;
+$screen-lg:                  1200px !default;
 $screen-lg-min:              $screen-lg !default;
 //** Deprecated `$screen-lg-desktop` as of v3.0.1
 $screen-lg-desktop:          $screen-lg-min !default;

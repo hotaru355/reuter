@@ -3,7 +3,7 @@ define([
     'underscore',
     'backbone',
     'app/menu',
-    'text!/templates/customers.html'
+    'text!templates/customers.html'
 ], function($, _, Backbone, menu, customersTemplate) {
     var customers = [{
         name: 'Stadt Kassel',

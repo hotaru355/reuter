@@ -2,7 +2,7 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'text!/templates/our-values-svg.html'
+	'text!templates/our-values-svg.html'
 ], function($, _, Backbone, valuesTemplate) {
 	var stanHandFont = {
 		"0": {

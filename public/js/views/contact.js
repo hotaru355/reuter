@@ -3,7 +3,7 @@ define([
     'underscore',
     'backbone',
     'app/menu',
-    'text!/partials/contact.html'
+    'text!partials/contact.html'
 ], function($, _, Backbone, menu, contactPartial) {
 
     var ContactView = Backbone.View.extend({

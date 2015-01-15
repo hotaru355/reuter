@@ -39,7 +39,7 @@ define([
 			label: 'ohne uns',
 			url: 'ueber-uns/ohne-uns',
 		}, {
-			label: 'Lebensaufgabe',
+			label: 'Lebens&shy;aufgabe',
 			url: 'ueber-uns/lebensaufgabe',
 		}],
 		work: [{
@@ -49,10 +49,10 @@ define([
 			label: 'Farbe im Aussenbereich',
 			url: 'unsere-arbeiten/aussenbereich',
 		}, {
-			label: 'Leistuns- spektrum',
+			label: 'Leistuns&shy;spektrum',
 			url: 'unsere-arbeiten/leistungsspektrum',
 		}, {
-			label: 'Presse- stimmen',
+			label: 'Presse&shy;stimmen',
 			url: 'unsere-arbeiten/pressestimmen',
 		}]
 	};
@@ -95,7 +95,7 @@ define([
 		} else {
 			$('#nav-main').removeClass('faded-out');
 
-			$('#nav-main .tile:not(.hidden-greater-sm)').each(function(index) {
+			$('#nav-main-content > .tile').each(function(index) {
 				if (navIndex == index) {
 					$(this).addClass('selected');
 				} else {
@@ -136,6 +136,15 @@ define([
 			});
 		}
 
+		navItems.forEach(function(item) {
+			$('#sub-' + item + ' > .tile').each(function(index) {
+				$(this).removeClass('selected');
+				if (item == navItem && subNavIndex == index) {
+					$(this).addClass('selected');
+				}
+			});
+		})
+
 		// logo
 		$('.logo-background').removeClass(navItems.join(' '))
 			.addClass(navItem)
@@ -175,7 +184,7 @@ define([
 		});
 	};
 	var removeLinks = function() {
-		$('.tile-row .menu-link,.thumb-container').remove();
+		$('.start-link,.thumb-container').remove();
 	};
 
 	var Menu = {
@@ -188,12 +197,11 @@ define([
 					removeContentTiles();
 					$('#page').hide();
 					$('.menu-icon').hide();
+					$('#nav-main').removeClass('slided-out')
 				} else {
 					addContentTiles();
 					$('#page').show();
-					$('.menu-icon').css({
-						display: 'flex'
-					});
+					$('.menu-icon').show();
 				}
 				if (onFadedOut) {
 					onFadedOut.call();
@@ -201,6 +209,28 @@ define([
 				fadeInOut(true, onFadedIn);
 			});
 		},
+		bindControls: function() {
+			$('.collapse-icon').click(function() {
+				var icon;
+				var subMenu = $(this).parent().hasClass('nav-aboutus') ? '#sub-nav-aboutus' :
+					($(this).parent().hasClass('nav-work') ? '#sub-nav-work' : '');
+				if (subMenu) {
+					if ($(subMenu).hasClass('collapsed')) {
+						icon = '/images/icons/minus.svg';
+					} else {
+						icon = '/images/icons/plus.svg';
+					}
+					$(this).find('img').attr('src', icon)
+					$(subMenu).toggleClass('collapsed')
+				}
+			});
+			$('.close-icon').click(function() {
+				$('#nav-main').removeClass('slided-out')
+			});
+			$('.menu-icon').click(function() {
+				$('#nav-main').toggleClass('slided-out')
+			});
+		}
 	};
 
 	return Menu;

@@ -1,15 +1,13 @@
 define([
-  'jquery',
-  'underscore',
-  'backbone',
-  'router',
-  'bootstrap',
-], function($, _, Backbone, Router){
-  var initialize = function(){
-    Router.initialize();
-  };
+    'router',
+    'app/menu',
+], function(Router, menu) {
+    var App = {
+        initialize: function() {
+            Router.initialize();
+            menu.bindControls();
+        }
+    }
 
-  return { 
-    initialize: initialize
-  };
+    return App;
 });

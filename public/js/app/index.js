@@ -1,7 +1,6 @@
 define([
 	'jquery',
 	'app/utils/grid',
-	'bootstrap',
 ], function($, Grid) {
 
 	var Index = {
@@ -50,7 +49,7 @@ define([
 				});
 				container.find('#' + menuId)
 					.addClass('tile-' + menu.className)
-					.append('<a class="menu-link" href="#/' + menu.url + '">' + menu.label + '</a>')
+					.append('<a class="start-link" href="#/' + menu.url + '">' + menu.label + '</a>')
 					.hover(function() {
 						$('#' + hoverIds.join(',#')).addClass('hover-' + menu.className);
 					}, function() {

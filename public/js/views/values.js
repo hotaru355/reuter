@@ -4,7 +4,7 @@ define([
     'backbone',
     'app/menu',
     'app/values',
-    'text!/templates/our-values.html'
+    'text!templates/our-values.html'
 ], function($, _, Backbone, menu, values, valuesTemplate) {
 
     var IndexView = Backbone.View.extend({

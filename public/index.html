@@ -26,102 +26,100 @@
         <div class="tile-table">
             <div class="bg-net"></div>
             <nav id="nav-main" class="nav-row faded-out">
-                <div class="tile nav-link hidden-greater-sm">
-                    <a class="back-icon menu-link" href="javascript:">
-                        <img src="/images/icons/back.svg">
-                    </a>
-                    <a class="close-icon menu-link" href="javascript:(function(){$('.nav-row').removeClass('slided-out')})()">
+                <div class="tile static-nav">
+                    <a class="close-icon menu-link" href="javascript:">
                         <img src="/images/icons/close.svg">
                     </a>
                 </div>
-                <div class="scroller">
+                <div id="nav-main-content">
                     <div class="nav-start tile">
-                        <a class="nav-link" href="#/">Startseite</a>
+                        <a class="nav-link" href="#/" title="Startseite">Startseite</a>
                     </div>
                     <div class="nav-aboutus tile">
-                        <a class="nav-link" href="#/ueber-uns/frank-reuter">Über Uns</a>
-                        <a class="plus-icon nav-link hidden-greater-sm" href="javascript:(function(){$('#nav-sub').addClass('slided-out')})()">
+                        <a class="nav-link" href="#/ueber-uns/frank-reuter" title="Über Uns">Über Uns</a>
+                        <a class="collapse-icon menu-link hidden-greater-sm" href="javascript:">
                             <img src="/images/icons/plus.svg">
                         </a>
                         <div class="nav-deco-bottom"></div>
                     </div>
-                    <nav id="nav-sub-aboutus" class="hidden-greater-sm collapsed">
+                    <nav id="sub-nav-aboutus" class="sub-nav-row collapsed">
                         <div class="nav-aboutus tile">
-                            <a class="nav-link" href="#/ueber-uns/frank-reuter">Frank Reuter</a>
+                            <a class="nav-link" href="#/ueber-uns/frank-reuter" title="Frank Reuter">Frank Reuter</a>
                             <div class="nav-deco-left"></div>
                         </div>
                         <div class="nav-aboutus tile">
-                            <a class="nav-link" href="#/ueber-uns/assistenz">Assistenz</a>
+                            <a class="nav-link" href="#/ueber-uns/assistenz" title="Assistenz">Assistenz</a>
                             <div class="nav-deco-left"></div>
                         </div>
                         <div class="nav-aboutus tile">
-                            <a class="nav-link" href="#/ueber-uns/team">Das Team</a>
+                            <a class="nav-link" href="#/ueber-uns/team" title="Das Team">Das Team</a>
                             <div class="nav-deco-left"></div>
                         </div>
                         <div class="nav-aboutus tile">
-                            <a class="nav-link" href="#/ueber-uns/chronik">Chronik</a>
+                            <a class="nav-link" href="#/ueber-uns/chronik" title="Chronik">Chronik</a>
                             <div class="nav-deco-left"></div>
                         </div>
                         <div class="nav-aboutus tile">
-                            <a class="nav-link" href="#/ueber-uns/partner">Partner</a>
+                            <a class="nav-link" href="#/ueber-uns/partner" title="Partner">Partner</a>
                             <div class="nav-deco-left"></div>
                         </div>
                         <div class="nav-aboutus tile">
-                            <a class="nav-link" href="#/ueber-uns/ohne-uns">ohne uns</a>
+                            <a class="nav-link" href="#/ueber-uns/ohne-uns" title="ohne uns">ohne uns</a>
                             <div class="nav-deco-left"></div>
                         </div>
                         <div class="nav-aboutus tile">
-                            <a class="nav-link" href="#/ueber-uns/lebensaufgabe">Lebensaufgabe</a>
+                            <a class="nav-link" href="#/ueber-uns/lebensaufgabe" title="Lebensaufgabe">Lebens&shy;aufgabe</a>
                             <div class="nav-deco-left"></div>
                         </div>
                     </nav>
                     <div class="nav-values tile">
-                        <a class="nav-link" href="#/unsere-werte">Unsere Werte</a>
+                        <a class="nav-link" href="#/unsere-werte" title="Unsere Werte">Unsere Werte</a>
                         <div class="nav-deco-bottom"></div>
                     </div>
                     <div class="nav-work tile">
-                        <a class="nav-link" href="#/unsere-arbeiten/raum">Unsere Arbeiten</a>
-                        <a class="plus-icon nav-link hidden-greater-sm" href="javascript:">
+                        <a class="nav-link" href="#/unsere-arbeiten/raum" title="Unsere Arbeiten">Unsere Arbeiten</a>
+                        <a class="collapse-icon menu-link hidden-greater-sm" href="javascript:">
                             <img src="/images/icons/plus.svg">
                         </a>
                         <div class="nav-deco-bottom"></div>
                     </div>
-                    <nav id="nav-sub-work" class="hidden-greater-sm collapsed">
-                        <div class="tile">
-                            <a class="nav-link" href="#/unsere-arbeiten/raum">Farbe im Raum</a>
+                    <nav id="sub-nav-work" class="sub-nav-row collapsed">
+                        <div class="nav-work tile">
+                            <a class="nav-link" href="#/unsere-arbeiten/raum" title="Farbe im Raum">Farbe im Raum</a>
                             <div class="nav-deco-left"></div>
                         </div>
-                        <div class="tile">
-                            <a class="nav-link" href="#/unsere-arbeiten/aussenbereich">Farbe im Aussenbereich</a>
+                        <div class="nav-work tile">
+                            <a class="nav-link" href="#/unsere-arbeiten/aussenbereich" title="Farbe im Aussenbereich">Farbe im Aussenbereich</a>
                             <div class="nav-deco-left"></div>
                         </div>
-                        <div class="tile">
-                            <a class="nav-link" href="#/unsere-arbeiten/leistungsspektrum">Leistuns- spektrum</a>
+                        <div class="nav-work tile">
+                            <a class="nav-link" href="#/unsere-arbeiten/leistungsspektrum" title="Leistunsspektrum">Leistuns&shy;spektrum</a>
                             <div class="nav-deco-left"></div>
                         </div>
-                        <div class="tile">
-                            <a class="nav-link" href="#/unsere-arbeiten/pressestimmen">Pressestimmen</a>
+                        <div class="nav-work tile">
+                            <a class="nav-link" href="#/unsere-arbeiten/pressestimmen" title="Pressestimmen">Presse&shy;stimmen</a>
                             <div class="nav-deco-left"></div>
                         </div>
                     </nav>
                     <div class="nav-customers tile">
-                        <a class="nav-link" href="#/unsere-kunden">Unsere Kunden</a>
+                        <a class="nav-link" href="#/unsere-kunden" title="Unsere Kunden">Unsere Kunden</a>
                         <div class="nav-deco-bottom"></div>
                     </div>
                     <div class="nav-contact tile">
-                        <a class="nav-link" href="#/kontakt">Kontakt</a>
+                        <a class="nav-link" href="#/kontakt" title="Kontakt">Kontakt</a>
                         <div class="nav-deco-bottom"></div>
                     </div>
-                    <div class="tile-row-span">
-                        <div class="logo-background hidden-xs">
+                    <div class="tile-row-span hidden-xs">
+                        <div class="logo-background">
                             <img src="images/reuter_schriftzug_transparent.png">
                         </div>
                     </div>
-                    <div class="tile">
-                        <a class="mail-icon menu-link hidden-greater-sm" href="mailto:info@reuter-und-sohn.de">
-                            <img src="/images/icons/mail.svg">
-                        </a>
-                    </div>
+                    <div class="tile hidden-xs"></div>
+                </div>
+                <div class="tile static-nav">
+                    <a class="menu-link hidden-greater-sm" href="mailto:info@reuter-und-sohn.de">
+                        <img src="/images/icons/mail.svg">
+                    </a>
                 </div>
             </nav>
 
@@ -131,14 +129,14 @@
                 <div id="tile-0-2" class="tile"><div class="blind"></div></div>
                 <div id="tile-0-3" class="tile">
                     <div class="blind"></div>
-                    <div id="page"></div>
+                    <section id="page"></section>
                 </div>
                 <div id="tile-0-4" class="tile"><div class="blind"></div></div>
                 <div id="tile-0-5" class="tile"><div class="blind"></div></div>
                 <div id="tile-0-6" class="tile"><div class="blind"></div></div>
                 <div id="tile-0-7" class="tile">
                     <div class="blind"></div>
-                    <a class="menu-icon nav-link hidden-greater-sm" href="javascript:(function(){$('#nav-main').toggleClass('slided-out')})()">
+                    <a class="menu-icon menu-link hidden-greater-sm" href="javascript:">
                         <img src="/images/icons/menu.svg">
                     </a>
                 </div>
@@ -188,7 +186,7 @@
                 <div id="tile-4-7" class="tile"><div class="blind"></div></div>
             </div>
      
-            <nav id="nav-sub" class="nav-row">
+            <nav id="nav-sub" class="nav-row hidden-xs">
                 <div class="tile">
                     <div class="nav-deco-top"></div>
                 </div>
@@ -211,8 +209,8 @@
                     <div class="nav-deco-top"></div>
                 </div>
                 <div class="tile">
-                    <a class="mail-icon menu-link" href="mailto:info@reuter-und-sohn.de" title="Schreiben Sie uns!">
-                        <img src="/images/icons/mail.svg">
+                    <a class="mail-icon" href="mailto:info@reuter-und-sohn.de" title="Schreiben Sie uns!">
+                        <img src="/images/icons/mail-lg.svg">
                     </a>
                 </div>
             </nav>

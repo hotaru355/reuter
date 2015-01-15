@@ -4,9 +4,9 @@ define([
     'backbone',
     'app/work',
     'app/menu',
-    'text!/partials/work/innen-aussen.html',
-    'text!/partials/work/leistungsspektrum.html',
-    'text!/partials/work/pressestimmen.html'
+    'text!partials/work/innen-aussen.html',
+    'text!partials/work/leistungsspektrum.html',
+    'text!partials/work/pressestimmen.html'
 ], function($, _, Backbone, work, menu, innenAussenPartial, leistungsspektrumPartial, pressestimmenPartial) {
 
     var IndexView = Backbone.View.extend({

@@ -3,10 +3,10 @@ define([
     'underscore',
     'backbone',
     'app/utils/vectorizer',
-    'text!/templates/our-values.html',
-    'text!/partials/animation-0.html',
-    'text!/partials/animation-1.html',
-    'text!/partials/animation-2.html'
+    'text!templates/our-values.html',
+    'text!partials/animation-0.html',
+    'text!partials/animation-1.html',
+    'text!partials/animation-2.html'
 ], function($, _, Backbone, vectorizer, valuesTemplate, animation0Partial, animation1Partial, animation2Partial) {
 
     var values = {

@@ -1,10 +1,7 @@
 define([
-    'jquery',
-    'underscore',
-    'backbone',
     'app/menu',
     'app/index'
-], function($, _, Backbone, menu, index) {
+], function(menu, index) {
 
     var IndexView = Backbone.View.extend({
         el: "#page",

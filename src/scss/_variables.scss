@@ -1,9 +1,18 @@
 $screen-multiplicator: 96px;
-$screen-xs-factor: 5; // 480px for a 480px screen
-$screen-sm-factor: 6; // 576px for a 768px screen
-$screen-md-factor: 8; // 768px for a 992px screen
-$screen-lg-factor: 10; // 960px for a 1200px+ screen
+$screen-xs-factor: 5;
+$screen-sm-factor: 6; 
+$screen-md-factor: 8; 
+$screen-lg-factor: 10; 
 
+$tile-width-xs: $screen-multiplicator * $screen-xs-factor / 8; // 480px for a 480px screen
+$tile-width-sm: $screen-multiplicator * $screen-sm-factor / 8; // 576px for a 768px screen
+$tile-width-md: $screen-multiplicator * $screen-md-factor / 8; // 768px for a 992px screen
+$tile-width-lg: $screen-multiplicator * $screen-lg-factor / 8; // 960px for a 1200px+ screen
+
+$grid-background-color: #333333;
+$tile-border-color: grey;
+$tile-border-width: 1px;
+$tile-fadeout-time: 1.5s;
 
 $color-customers: #3399CA;
 $color-work: #679A00;
@@ -41,4 +50,22 @@ $color-aboutus: #CC0000;
 }
 %bg-semi-aboutus {
     background-color: rgba($color-aboutus, 0.8);
+}
+
+@media (max-width: $screen-sm-max) {
+	$font-size-base: 11px;
+	body {
+		font-size: $font-size-base;
+	}
+	h2 {
+		margin-top: 3px;
+		font-size: floor(($font-size-base * 2.15));
+	}
+	h5 {
+		margin-top: 10px;
+		font-size: $font-size-base;
+	}
+	.btn {
+		font-size: $font-size-base;
+	}
 }

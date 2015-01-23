@@ -26,6 +26,7 @@ define([
             'unsere-arbeiten/pressestimmen': 'showPress',
             'unsere-kunden': 'showCustomers',
             'kontakt': 'showContact',
+            'tool': 'showTool',
 
             // Default
             // '*actions': 'defaultAction'
@@ -95,6 +96,12 @@ define([
         app_router.on('route:showPress', function() {
             var workView = new WorkView();
             workView.render(3);
+        });
+
+        // admin tool, not client facing
+        app_router.on('route:showTool', function() {
+            var valuesView = new ValuesView();
+            valuesView.compileSvg();
         });
 
         Backbone.history.start({

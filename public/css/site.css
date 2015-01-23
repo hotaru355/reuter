@@ -1650,7 +1650,7 @@ button.close {
   border-radius: 50%;
   border: grey 2px solid; }
 
-.handwriting {
+.handwriting path {
   transition-property: stroke-dashoffset;
   transition-timing-function: linear; }
 
@@ -1684,68 +1684,68 @@ button.close {
   opacity: 0.6; }
 
 .fade-in-rand-0 {
-  -webkit-transition-delay: 71ms;
-  transition-delay: 71ms; }
+  -webkit-transition-delay: 45ms;
+  transition-delay: 45ms; }
 
 .fade-in-rand-1 {
-  -webkit-transition-delay: 177ms;
-  transition-delay: 177ms; }
+  -webkit-transition-delay: 109ms;
+  transition-delay: 109ms; }
 
 .fade-in-rand-2 {
-  -webkit-transition-delay: 230ms;
-  transition-delay: 230ms; }
+  -webkit-transition-delay: 299ms;
+  transition-delay: 299ms; }
 
 .fade-in-rand-3 {
-  -webkit-transition-delay: 321ms;
-  transition-delay: 321ms; }
+  -webkit-transition-delay: 365ms;
+  transition-delay: 365ms; }
 
 .fade-in-rand-4 {
-  -webkit-transition-delay: 423ms;
-  transition-delay: 423ms; }
+  -webkit-transition-delay: 488ms;
+  transition-delay: 488ms; }
 
 .fade-in-rand-5 {
-  -webkit-transition-delay: 557ms;
-  transition-delay: 557ms; }
+  -webkit-transition-delay: 596ms;
+  transition-delay: 596ms; }
 
 .fade-in-rand-6 {
-  -webkit-transition-delay: 647ms;
-  transition-delay: 647ms; }
+  -webkit-transition-delay: 621ms;
+  transition-delay: 621ms; }
 
 .fade-in-rand-7 {
-  -webkit-transition-delay: 749ms;
-  transition-delay: 749ms; }
+  -webkit-transition-delay: 768ms;
+  transition-delay: 768ms; }
 
 .fade-in-rand-8 {
-  -webkit-transition-delay: 892ms;
-  transition-delay: 892ms; }
+  -webkit-transition-delay: 896ms;
+  transition-delay: 896ms; }
 
 .fade-in-rand-9 {
-  -webkit-transition-delay: 917ms;
-  transition-delay: 917ms; }
+  -webkit-transition-delay: 933ms;
+  transition-delay: 933ms; }
 
 .fade-in-rand-10 {
-  -webkit-transition-delay: 1099ms;
-  transition-delay: 1099ms; }
+  -webkit-transition-delay: 1022ms;
+  transition-delay: 1022ms; }
 
 .fade-in-rand-11 {
-  -webkit-transition-delay: 1195ms;
-  transition-delay: 1195ms; }
+  -webkit-transition-delay: 1188ms;
+  transition-delay: 1188ms; }
 
 .fade-in-rand-12 {
-  -webkit-transition-delay: 1220ms;
-  transition-delay: 1220ms; }
+  -webkit-transition-delay: 1228ms;
+  transition-delay: 1228ms; }
 
 .fade-in-rand-13 {
-  -webkit-transition-delay: 1322ms;
-  transition-delay: 1322ms; }
+  -webkit-transition-delay: 1364ms;
+  transition-delay: 1364ms; }
 
 .fade-in-rand-14 {
-  -webkit-transition-delay: 1466ms;
-  transition-delay: 1466ms; }
+  -webkit-transition-delay: 1410ms;
+  transition-delay: 1410ms; }
 
 .fade-in-rand-15 {
-  -webkit-transition-delay: 1547ms;
-  transition-delay: 1547ms; }
+  -webkit-transition-delay: 1549ms;
+  transition-delay: 1549ms; }
 
 .checkmark-list {
   list-style-image: url("/images/icons/checkmark.svg"); }

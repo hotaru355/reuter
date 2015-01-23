@@ -1,0 +1,47 @@
+<svg id="<%= id %>" class="values-animation" viewBox="0 0 550 370" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="<%= color %>" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+  <defs>
+    <mask id="<%= id %>-mask">
+      <image x="0" y="0" width="100%" height="100%" xlink:href="<%= mask %>"></image>
+    </mask>
+  </defs>
+  <g mask="url(#<%= id %>-mask)" class="handwriting"><%
+var letter, dashArray, aproxLength;
+var pathSpeed = 0;
+var delay = 0;
+var initialX = 1.2;
+var initialY = 7.2;
+
+var x = initialX;
+var y = initialY;
+for (var i=0; i < text.length; i++) {
+	letter = text[i];
+
+	switch (letter) {
+		case '\n':
+			y += lineHeight;
+			x = initialX;
+			break;
+		case '\t':
+			x = Math.ceil(x / tabWidth) * tabWidth;
+			break;
+		case ' ':
+			x += font[' '].width;
+			break;
+		default:
+			font[letter].vectors.forEach(function(vector) {
+				delay += pathSpeed;
+				pathSpeed = vector.length / speed * 1000;
+
+				aproxLength = Math.ceil(vector.length); 
+				dashArray = (aproxLength + 1) + ',' + (aproxLength + 1);
+%>
+    <path stroke-dashoffset="<%= aproxLength + 2 %>" stroke-dasharray="<%= dashArray %>" style="transition-duration:<%= Math.round(pathSpeed) + 'ms'%>;transition-delay:<%= Math.round(delay) + 'ms'%>" d="<%= 'M' + x.toFixed(2) + ',' + y + vector.path %>"></path><%
+
+			});
+			x += font[letter].width;
+			break;
+	}
+}
+%>
+  </g>
+</svg>

@@ -4,13 +4,17 @@ require.config({
         underscore: 'libs/underscore/underscore-min',
         backbone: 'libs/backbone/backbone-min',
         bootstrap: 'libs/bootstrap/bootstrap.min',
+        modernizr: 'libs/modernizr/modernizr.custom',
         templates: '../html/templates',
         partials: '../html/partials'
     },
     shim: {
-        "bootstrap": {
-            "deps": ['jquery']
-        }
+        bootstrap: {
+            deps: ['jquery']
+        },
+        modernizr: {
+            exports: 'Modernizr'
+        }                
     },
 
 });

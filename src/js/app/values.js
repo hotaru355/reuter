@@ -2,11 +2,10 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!templates/our-values.html',
     'text!partials/animation-0.html',
     'text!partials/animation-1.html',
     'text!partials/animation-2.html'
-], function($, _, Backbone, valuesTemplate, animation0Partial, animation1Partial, animation2Partial) {
+], function($, _, Backbone, animation0Partial, animation1Partial, animation2Partial) {
 
     var values = {
         bindListeners: function() {

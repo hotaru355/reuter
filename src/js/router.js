@@ -11,7 +11,7 @@ define([
 
     var AppRouter = Backbone.Router.extend({
         routes: {
-            '': 'showIndex',
+            'maler-kassel': 'showIndex',
             'ueber-uns/frank-reuter': 'showAboutUs',
             'ueber-uns/assistenz': 'showAssistant',
             'ueber-uns/team': 'showTeam',
@@ -26,82 +26,79 @@ define([
             'unsere-arbeiten/pressestimmen': 'showPress',
             'unsere-kunden': 'showCustomers',
             'kontakt': 'showContact',
-            'tool': 'showTool',
 
             // Default
-            // '*actions': 'defaultAction'
+            '*ROUTE': 'defaultRoute'
         }
     });
 
     var initialize = function() {
 
-        var app_router = new AppRouter;
+        var appRouter = new AppRouter;
 
-        app_router.on('route:showIndex', function() {
+        appRouter.on('route:showIndex', function() {
             var indexView = new IndexView();
             indexView.render();
         });
-        app_router.on('route:showCustomers', function() {
+        appRouter.on('route:showCustomers', function() {
             var customerView = new CustomersView();
             customerView.render();
         });
-        app_router.on('route:showContact', function() {
+        appRouter.on('route:showContact', function() {
             var contactView = new ContactView();
             contactView.render();
         });
-        app_router.on('route:showAboutUs', function() {
+        appRouter.on('route:showAboutUs', function() {
             var aboutusView = new AboutUsView();
             aboutusView.render(0);
         });
-        app_router.on('route:showAssistant', function() {
+        appRouter.on('route:showAssistant', function() {
             var aboutusView = new AboutUsView();
             aboutusView.render(1);
         });
-        app_router.on('route:showTeam', function() {
+        appRouter.on('route:showTeam', function() {
             var aboutusView = new AboutUsView();
             aboutusView.render(2);
         });
-        app_router.on('route:showChronicle', function() {
+        appRouter.on('route:showChronicle', function() {
             var aboutusView = new AboutUsView();
             aboutusView.render(3);
         });
-        app_router.on('route:showPartner', function() {
+        appRouter.on('route:showPartner', function() {
             var aboutusView = new AboutUsView();
             aboutusView.render(4);
         });
-        app_router.on('route:showWithoutUs', function() {
+        appRouter.on('route:showWithoutUs', function() {
             var aboutusView = new AboutUsView();
             aboutusView.render(5);
         });
-        app_router.on('route:showChallenge', function() {
+        appRouter.on('route:showChallenge', function() {
             var aboutusView = new AboutUsView();
             aboutusView.render(6);
         });
-        app_router.on('route:showValues', function() {
+        appRouter.on('route:showValues', function() {
             var valuesView = new ValuesView();
             valuesView.render();
         });
-        app_router.on('route:showRoom', function() {
+        appRouter.on('route:showRoom', function() {
             var workView = new WorkView();
             workView.render(0);
         });
-        app_router.on('route:showOutdoors', function() {
+        appRouter.on('route:showOutdoors', function() {
             var workView = new WorkView();
             workView.render(1);
         });
-        app_router.on('route:showPerformance', function() {
+        appRouter.on('route:showPerformance', function() {
             var workView = new WorkView();
             workView.render(2);
         });
-        app_router.on('route:showPress', function() {
+        appRouter.on('route:showPress', function() {
             var workView = new WorkView();
             workView.render(3);
         });
 
-        // admin tool, not client facing
-        app_router.on('route:showTool', function() {
-            var valuesView = new ValuesView();
-            valuesView.compileSvg();
+        appRouter.on('route:defaultRoute', function(path) {
+            this.navigate('#/maler-kassel', {trigger: true});
         });
 
         Backbone.history.start({

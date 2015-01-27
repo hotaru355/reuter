@@ -15,8 +15,7 @@ define([
         render: function(subIndex) {
             var self = this;
 
-            var subPages = [innenAussenPartial, innenAussenPartial, leistungsspektrumPartial, pressestimmenPartial
-            ];
+            var subPages = [innenAussenPartial, innenAussenPartial, leistungsspektrumPartial, pressestimmenPartial];
 
             menu.init(3, subIndex, function() {
                 self.$el.html(subPages[subIndex]);

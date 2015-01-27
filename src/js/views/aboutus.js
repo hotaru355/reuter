@@ -2,6 +2,7 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    'modernizr',
     'app/menu',
     'text!partials/aboutUs/frank-reuter.html',
     'text!partials/aboutUs/assistenz.html',
@@ -10,7 +11,7 @@ define([
     'text!partials/aboutUs/partner.html',
     'text!partials/aboutUs/ohne-uns.html',
     'text!partials/aboutUs/lebensaufgabe.html',
-], function($, _, Backbone, menu, frankReuterPartial, assistenzPartial, teamTemplate, chronikPartial,
+], function($, _, Backbone, Modernizr, menu, frankReuterPartial, assistenzPartial, teamTemplate, chronikPartial,
         partnerPartial, ohneUnsPartial, lebensaufgabePartial) {
     var employees = [{
         name: 'Karl-Heinz Dumke',
@@ -107,10 +108,30 @@ define([
             var subPages = [frankReuterPartial, assistenzPartial, compiledTeam({employees: employees}),
                 chronikPartial, partnerPartial, ohneUnsPartial, lebensaufgabePartial
             ];
+            var percentage, index;
+            var numImages = 8;
+            var percentileBracket = 100/numImages;
 
             menu.init(1, subIndex, function() {
                 self.$el.html(subPages[subIndex]);
-                $('[data-toggle="tooltip"]').tooltip()
+                if (subIndex == 4) {
+                    $('[data-toggle="tooltip"]').tooltip();
+
+                    if (Modernizr.touch) {
+                        $('.nondeco-list a:eq(0)').tooltip('show');
+                        $('.content-scroller').scroll(function() {
+                            percentage = Math.round($('.content-scroller').scrollTop() / ($('.nondeco-list').height()- $('.content-scroller').height() + 10) * 100);
+                            anchorIndex = (percentage >= 100) ? (numImages - 1) : Math.floor(percentage / percentileBracket);
+                            $('[data-toggle="tooltip"]').each(function(i) {
+                                if (i == anchorIndex) {
+                                    $(this).tooltip('show');
+                                } else {
+                                    $(this).tooltip('hide');
+                                }
+                            })
+                        })
+                    }
+                }
             });
 
         }

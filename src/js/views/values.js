@@ -21,11 +21,6 @@ define([
                 $('#sheet-btn-0').click();
             });
         },
-
-        compileSvg: function() {
-            var self = this;
-            this.$el.html(values.compileSvg()[0]);
-        }
     });
 
     return IndexView;

@@ -165,26 +165,34 @@ define([
 
 	var addContentTiles = function() {
 		var startFrom = [2,3,3,3,5];
-		var rows = $(selector.tileRow);
-		rows.each(function(rowIndex) {
+		$(selector.tileRow).each(function(rowIndex) {
 			$(this).find('.tile').each(function(colIndex) {
-				$(this).attr('class', 'tile')
 				if (colIndex >= startFrom[rowIndex]) {
-					$(this).addClass('content-tile');
+					if (rowIndex == 0) {
+						if (colIndex == 7) {
+							$(this).addClass('content-tile-topRight');
+						} else {
+							$(this).addClass('content-tile-top');
+						}
+					} else if (colIndex == 7) {
+						$(this).addClass('content-tile-right');
+					} else {
+						$(this).addClass('content-tile');
+					}
 				}
 			});
 		});
 	};
 	var removeContentTiles = function() {
-		var rows = $(selector.tileRow);
-		rows.each(function(rowIndex) {
-			$(this).find('.tile').each(function(colIndex) {
-				$(this).removeClass('content-tile');
-			});
-		});
+		$(selector.tile).removeClass('content-tile')
+			.removeClass('content-tile-top')
+			.removeClass('content-tile-topRight')
+			.removeClass('content-tile-right');
 	};
+
 	var removeLinks = function() {
 		$('.start-link,.thumb-container').remove();
+		$(selector.tileRow + ' > ' + selector.tile).attr('class', 'tile');
 	};
 
 	var Menu = {

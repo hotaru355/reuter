@@ -77,9 +77,24 @@
 
 // tiles that get content overlayed
 .content-tile {
-	background-color: rgba(255,255,255,0.8);
-	border-top-color: rgba(233, 233, 233, 0.5);
-	border-right-color: rgba(233, 233, 233, 0.5);
+	background-color:   $content-background-color;
+	border-top-color:   $content-border-color;
+	border-right-color: $content-border-color;
+}
+.content-tile-right {
+	background-color:   $content-background-color;
+	border-top-color:   $content-border-color;
+	border-right-color: $tile-border-color;
+}
+.content-tile-top {
+	background-color:   $content-background-color;
+	border-top-color:   $tile-border-color;
+	border-right-color: $content-border-color;
+}
+.content-tile-topRight {
+	background-color:   $content-background-color;
+	border-top-color:   $tile-border-color;
+	border-right-color: $tile-border-color;
 }
 
 // a blind tile to hide/reveal the table

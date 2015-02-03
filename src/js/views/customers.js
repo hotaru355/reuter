@@ -1,3 +1,9 @@
+/**
+ * contact.js
+ * 
+ * Darstellung der "Unsere Kunden"-Seite. 
+ */
+
 define([
     'jquery',
     'underscore',
@@ -5,6 +11,10 @@ define([
     'app/menu',
     'text!templates/customers.html'
 ], function($, _, Backbone, menu, customersTemplate) {
+
+    // Die Kunden als JSON zum einfacheren Editieren. Dieses JSON wird
+    // an customersTemplate übergeben. In einer dynamischen Anwendung würden diese
+    // Daten von einer Datenbank kommen.
     var customers = [{
         name: 'Stadt Kassel',
         job: 'Museum Fridericianum',

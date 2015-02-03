@@ -1,3 +1,18 @@
+/**
+ * vectorizer.js
+ *
+ * Ein Werkzeug zum Erstellen der animierten Schrift als SVG-Dateien. Das
+ * Erstellen der Dateien erfolgt in 2 Schritten:
+ *
+ * 1. Eine Inkscape-Datei wird eingelesen, welche alle Buchstaben des
+ * gewünschten Fonts in Vektoren nachgezeichnet enthaelt. Diese Datei wird in
+ * ein JSON umgewandelt welches für den zweiten Schritt benötigt wird.
+ *
+ * 2. Mit jeden Buchstaben als Vektor in einem JSON definiert, wird im zweiten
+ * Schritt Text eingelesen und mit Hilfe der Vektoren ein SVG generiert. Hier
+ * gehen die Abspielgeschwindigkeit, Farbe und anderes ein. 
+ */
+
 define([
 	'jquery',
 	'underscore',
@@ -795,6 +810,19 @@ define([
 		}
 	};
 
+	/**
+	 * Verringert die Nachkommastellen der gebrochenrationalen Zahlenwerte der
+	 * Vektoren.
+	 * 
+	 * @param  {object} font     Das Objekt welches Vektoren für jeden
+	 *                           Buchstaben enthält
+	 * @param  {number} decimals Die Anzahl der gewünschten Nachkommastellen. 1
+	 *                           bis 2 Nachkommastellen sollten reichen - mehr
+	 *                           Nachkommastellen sollten visuell keinen
+	 *                           Unterschied mehr machen.
+	 * @return {object}          Das Objekt welches die Vektoren mit gewünschter
+	 *                           Nachkommazahl enthält
+	 */
 	function limitFontPrecision(font, decimals) {
 		var pathSegs;
 		Object.keys(font).forEach(function(letter) {
@@ -818,6 +846,19 @@ define([
 	}
 
 	var vectorizer = {
+		/**
+		 * Konvertiert den text-Parameter zu einem SVG-Bild in welchen CSS-Werte
+		 * enthalten sind, die das Animieren des SVG erlauben.
+		 * 
+		 * @param {string} id    Das id-Attribut des genrierten SVG-Elements
+		 * @param {string} text  Der Text der zu einem SVG umgewandelt werden
+		 *                       soll. '/n' und '/t' werden unterstützt.
+		 * @param {string} mask  Pfad und Dateiname der Datei, die als Maske
+		 *                       verwendet werden soll.
+		 * @param {number} speed Geschwindigkeit mit der die Animation ablaufen
+		 *                       soll. Default: 300.
+		 * @return {object} Das SVG-Element
+		 */
 		textToSvg: function(id, text, mask, speed) {
 			var compiled = _.template(valuesTemplate);
 			return compiled({
@@ -831,6 +872,13 @@ define([
 				tabWidth: 140.4
 			})
 		},
+
+		/**
+		 * Liest eine entsprechend gegliederte Inkscape-Datei und genriert
+		 * daraus ein Objekt, welches die Vektoren für jeden Buchstaben enthält.
+		 * 
+		 * @return {object} Das Objekt mit den Vektoren für jeden Buchstaben
+		 */
 		pathToJson: function() {
 			var groups = $($('#svg-export').get(0).contentDocument).find('svg > g');
 			var font = {};
@@ -887,6 +935,13 @@ define([
 			}
 			return font;
 		},
+
+		/**
+		 * Berechnet die Zeilenhöhe von einer entsprechend gegliederten
+		 * Inkscape-Datei.
+		 * 
+		 * @return {string} die Zeilenhöhe mit 3 Nachkommastellen
+		 */
 		getLineHeight: function() {
 			var groups = $($('#svg-export').get(0).contentDocument).find('svg > g');
 			var lineHight, label, paths, d0, d1, y0, y1;

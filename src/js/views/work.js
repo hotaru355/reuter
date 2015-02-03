@@ -1,3 +1,9 @@
+/**
+ * work.js
+ * 
+ * Darstellung der "Unsere Arbeiten"-Seite. 
+ */
+
 define([
     'jquery',
     'underscore',
@@ -12,6 +18,15 @@ define([
     var IndexView = Backbone.View.extend({
         el: "#page",
 
+        /**
+         * Rendert die Seite.
+         * 
+         * @param  {number} subIndex
+         *         der Index der Unterseite. 0: raum.html,
+         *         1: aussenbereich.html, 2: leistungsspektrum.html,
+         *         3: pressestimmen.html
+         * @return {void}
+         */
         render: function(subIndex) {
             var self = this;
 

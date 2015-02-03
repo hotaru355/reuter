@@ -39,13 +39,13 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1420"
-     inkscape:window-height="1003"
+     inkscape:window-width="1280"
+     inkscape:window-height="1014"
      id="namedview4"
      showgrid="false"
-     inkscape:zoom="2.2550973"
-     inkscape:cx="137.50068"
-     inkscape:cy="159.57285"
+     inkscape:zoom="2.7804054"
+     inkscape:cx="148"
+     inkscape:cy="156.42809"
      inkscape:window-x="0"
      inkscape:window-y="27"
      inkscape:window-maximized="0"
@@ -54,7 +54,7 @@
      inkscape:groupmode="layer"
      id="layer1"
      inkscape:label="Orig"
-     style="display:none">
+     style="display:inline">
     <image
        width="298"
        height="296"
@@ -66,11 +66,12 @@
   <g
      inkscape:groupmode="layer"
      id="layer2"
-     inkscape:label="Layer">
+     inkscape:label="Layer"
+     style="display:inline">
     <path
        id="path3760"
        style="fill:#3399cf;fill-opacity:1;fill-rule:evenodd;stroke:none"
-       d="M 137.5,294.5 C 56.774054,288.44 -4.7186631,218.57696 1.3327718,137.73607 7.3842077,56.895169 77.731162,-3.7266823 158.45711,2.3333706 239.18303,8.3934236 299.71867,78.840564 293.66724,159.68146 c -3.36405,44.9403 -27.15625,85.84233 -64.53318,110.94138 L 138.5,156.5 c 0,0 97.82549,-2.38187 97.5,-77.5 C 235.67452,3.881865 137.5,2.5 137.5,2.5 z M 0,0 296,0 296,296 0,296 z"
+       d="M 136,294 C 67,294 2,219 2,148 2,73 73,2 148,2 c 73,0 146,60 146,146 0,55 -27,98 -64,123 L 139,156 c 0,0 97,0 97,-77 C 236,2 136,3 136,3 z M 0,0 296,0 296,296 0,296 z"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="csssccsccccccc" />
   </g>

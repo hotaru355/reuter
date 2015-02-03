@@ -1,3 +1,9 @@
+/**
+ * index.js
+ * 
+ * Darstellung der Startseite. 
+ */
+
 define([
     'app/menu',
     'app/index'

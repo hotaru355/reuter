@@ -1,3 +1,10 @@
+/**
+ * menu.js
+ *
+ * Allgemeine Funktinalität die auf jeder Seite benötigt wird, wie etwa das Ein-
+ * und Ausblenden der Seiten, das Ändern des Hintergrundbildes und anderes.
+ */
+
 define([
 	'jquery'
 ], function($) {
@@ -65,6 +72,14 @@ define([
 		navTile: '.nav-tile'
 	}
 
+	/**
+	 * Lüftet den "Vorhang" bzw lässt ihn fallen.
+	 * 
+	 * @param {boolean} isIn    	Lüftet den Vorhang wenn 'true', ansonsten lässt
+	 *                           	ihn fallen
+	 * @param {function}  onFaded 	Callback, wenn der Effekt zu ende ist
+	 * @return {void}  
+	 */
 	var fadeInOut = function(isIn, onFaded) {
 		var delayRange = 1;
 		var duration = 0.5;
@@ -77,15 +92,18 @@ define([
 				transform: isIn ? 'rotateY(90deg)' : 'rotateY(0deg)'
 			});
 		});
-
-		// hack: transition one blind last and listen to event
-		// var lastBlind = Math.floor(Math.random() * blinds.length);
-		// $('.blind:eq(' + lastBlind + ')').css({
-		// 	'transition-delay': delayRange + 0.1 +'s',
-		// }).one($.support.transition.end, onFaded);
-
 		setTimeout(onFaded, (delayRange + duration) * 1000);
 	};
+
+	/**
+	 * Passt die obere und untere Navigationsleiste der ausgewählten Seite an.
+	 * 
+	 * @param {number} navIndex    Index der Hauptseite. 0: Startseite, 1: "Über
+	 *                             Uns", 2: "Unsere Werte", 3: "Unsere Arbeit",
+	 *                             4: "Kunden", 5: "Kontakt"
+	 * @param {nuber} subNavIndex Index der Unterseit. Nur sinnvoll für
+	 *                            navIndex=[1,3].
+	 */
 	var setNavs = function(navIndex, subNavIndex) {
 		var navItem = navItems[navIndex];
 
@@ -151,6 +169,17 @@ define([
 			.addClass('selected');
 
 	};
+
+	/**
+	 * Passt das Hintergrundbild der ausgewählten Seite an.
+	 * Zuordnung definiert durch 'imagesByNavIndex'.
+	 *  
+	 * @param {number} navIndex    Index der Hauptseite. 0: Startseite, 1: "Über
+	 *                             Uns", 2: "Unsere Werte", 3: "Unsere Arbeit",
+	 *                             4: "Kunden", 5: "Kontakt"
+	 * @param {nuber} subNavIndex Index der Unterseit. Nur sinnvoll für
+	 *                            navIndex=[1,3].
+	 */
 	var setBackground = function(navIndex, subNavIndex) {
 		subNavIndex = subNavIndex || 0;
 		var imgUrl = imagesByNavIndex[navIndex][subNavIndex];
@@ -163,6 +192,10 @@ define([
 		})
 	};
 
+	/**
+	 * Fügt transparent-weisse Kacheln hinzu auf denen der eigentliche
+	 * Seiteninhalt dargestellt wird.
+	 */
 	var addContentTiles = function() {
 		var startFrom = [2,3,3,3,5];
 		$(selector.tileRow).each(function(rowIndex) {
@@ -183,6 +216,10 @@ define([
 			});
 		});
 	};
+
+	/**
+	 * Entfernt die transparent-weissen Kacheln.
+	 */
 	var removeContentTiles = function() {
 		$(selector.tile).removeClass('content-tile')
 			.removeClass('content-tile-top')
@@ -190,12 +227,35 @@ define([
 			.removeClass('content-tile-right');
 	};
 
+	/**
+	 * Entfernt die Links der Startseite und der "Unsere Arbeiten"-Seite
+	 */
 	var removeLinks = function() {
 		$('.start-link,.thumb-container').remove();
 		$(selector.tileRow + ' > ' + selector.tile).attr('class', 'tile');
 	};
 
 	var Menu = {
+
+		/**
+		 * Initialisiert jede Seite durch übergebenen Index. Abfolge:
+		 *
+		 * 1. Vorhang fällt.
+		 * 2. onFadedOut wird ausgeführt
+		 * 3. Vorhang lüftet sich
+		 * 4. onFadedIn wird ausgeführt
+		 * 
+		 * @param {number} navIndex    Index der Hauptseite. 0: Startseite, 1:
+		 *                             "Über Uns", 2: "Unsere Werte",
+		 *                             3: "Unsere Arbeit", 4: "Kunden",
+		 *                             5: "Kontakt"
+		 * @param {nuber} subNavIndex Index der Unterseit. Nur sinnvoll für
+		 *                            navIndex=[1,3].
+		 * @param {function} onFadedOut  Callback, wenn der Vorhang gefallen ist
+		 * @param {function} onFadedIn   Callback, wenn der Vorhang sich wieder
+		 *                               lüftet
+		 * @return {void} 
+		 */
 		init: function(navIndex, subNavIndex, onFadedOut, onFadedIn) {
 			setNavs(navIndex, subNavIndex);
 			fadeInOut(false, function() {
@@ -217,6 +277,10 @@ define([
 				fadeInOut(true, onFadedIn);
 			});
 		},
+
+		/**
+		 * Verbindet Menüknöpfe mit entsprechender Funktionalität.
+		 */
 		bindControls: function() {
 			$('.collapse-icon').click(function() {
 				var icon;

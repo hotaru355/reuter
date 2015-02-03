@@ -1,3 +1,9 @@
+/**
+ * app.js
+ * 
+ * Die Initialisierung der Anwendung die das Routen und das Menü vorbereiten.
+ */
+
 define([
     'router',
     'app/menu',

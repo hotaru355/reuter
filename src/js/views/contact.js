@@ -1,3 +1,9 @@
+/**
+ * contact.js
+ * 
+ * Darstellung der "Kontakt"-Seite. 
+ */
+
 define([
     'jquery',
     'underscore',

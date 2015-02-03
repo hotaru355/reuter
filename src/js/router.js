@@ -1,3 +1,10 @@
+/**
+ * router.js
+ * 
+ * Hier werden URLs den view-Objekten zugeordnet, welche das Darstellen der
+ * der einzelnen Seiten übernehmen.
+ */
+
 define([
     'backbone',
     'views/index',

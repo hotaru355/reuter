@@ -1,3 +1,9 @@
+/**
+ * aboutus.js
+ * 
+ * Darstellung der "Über uns"-Seite. 
+ */
+
 define([
     'jquery',
     'underscore',
@@ -13,6 +19,10 @@ define([
     'text!partials/aboutUs/lebensaufgabe.html',
 ], function($, _, Backbone, Modernizr, menu, frankReuterPartial, assistenzPartial, teamTemplate, chronikPartial,
         partnerPartial, ohneUnsPartial, lebensaufgabePartial) {
+
+    // Die Angestellten als JSON zum einfacheren Editieren. Dieses JSON wird
+    // an teamTemplate übergeben. In einer dynamischen Anwendung würden diese
+    // Daten von einer Datenbank kommen.
     var employees = [{
         name: 'Karl-Heinz Dumke',
         image: 'Dumke.jpg',
@@ -102,6 +112,15 @@ define([
     var IndexView = Backbone.View.extend({
         el: "#page",
 
+        /**
+         * Rendert die Seite.
+         * 
+         * @param  {number} subIndex
+         *         der Index der Unterseite. 0: frank-reuter.html,
+         *         1: assistenz.html, 2: team.html, 3: chronik.html,
+         *         4: partner.html, 5: ohne-uns.html, 6: lebensaufgabe.html
+         * @return {void}
+         */
         render: function(subIndex) {
             var self = this;
             var compiledTeam = _.template(teamTemplate);
@@ -113,10 +132,15 @@ define([
             var percentileBracket = 100/numImages;
 
             menu.init(1, subIndex, function() {
+
+                // einfach nur die Unterseite einfügen
                 self.$el.html(subPages[subIndex]);
+
+                // nur für die partner.html laden wir die Bootstrap-Tooltips
                 if (subIndex == 4) {
                     $('[data-toggle="tooltip"]').tooltip();
 
+                    // finden wir ein Touchscreen, dann rufen wir tooltip('show') direkt auf
                     if (Modernizr.touch) {
                         $('.nondeco-list a:eq(0)').tooltip('show');
                         $('.content-scroller').scroll(function() {

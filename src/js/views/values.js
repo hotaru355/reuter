@@ -1,3 +1,9 @@
+/**
+ * values.js
+ * 
+ * Darstellung der "Unsere Werte"-Seite. 
+ */
+
 define([
     'jquery',
     'underscore',

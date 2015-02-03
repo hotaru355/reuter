@@ -1,3 +1,9 @@
+/**
+ * values.js
+ *
+ * Funktionalität der "Unsere Werte"-Seite.
+ */
+
 define([
     'jquery',
     'underscore',
@@ -8,6 +14,10 @@ define([
 ], function($, _, Backbone, animation0Partial, animation1Partial, animation2Partial) {
 
     var values = {
+
+        /**
+         * Ordnet Knöpfen Funktionalität zu.
+         */
         bindListeners: function() {
             var animations = [animation0Partial, animation1Partial, animation2Partial];
             var valuesListener = function(index) {
@@ -29,6 +39,7 @@ define([
                 (function(index) {
                     $('#sheet-btn-' + index).click(function() {
                         $('#sheet-' + index).html(animations[index]);
+                        // Trick um die Änderungen zu flushen
                         $('#sheet-' + index)[0].offsetWidth;
                         valuesListener(index);
                         $('#values-animation-' + index).find('path').attr('stroke-dashoffset', 0);

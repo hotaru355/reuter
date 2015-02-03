@@ -3,14 +3,30 @@
     <script src="svgCompiler-min.js"></script>
 </head>
 <body>
+	<h1>Hilfswerkzeug zum Generieren von animierter Schrift in Form einer SVG-Datei</h1>
+	<p>Diese Seite ist lediglich zur Entwicklung gedacht und sollte <strong>nicht</strong> auf den Server kopiert werden.</p>
+	<p>Die Arbeitsschritte sind folgende:</p>
+	<ol>
+		<li>Zeichnen aller Vektoren für alle Buchstaben/Zeichen in Inkscape</li>
+		<li>Man speichert die Inkscape-Datei als <code>paths_export.svg</code> im gleichen Verzeichnis wie diese index.html.</li>
+		<li>Man generiert ein JSON aus den Vektoren in Schritt 1</li>
+		<li>Man kopiert das JSON in die <code>/src/svgCompiler/vectorizer.js</code> und passt die <code>lineHeight</code> an.</li>
+		<li>Mit hilfe der <code>vectorizer.js</code>-Datei wird der Text, den man im Funktionsaufruf angibt in eine SVG-Datei übersetzt.</li>
+	</ol>
+	<p>Spezifikation der Inkscape-Datei (siehe <code>/src/svg/paths24.svg</code> als Beispiel):</p>
+	<ul>
+		<li>Jedes Zeichen, zB der Buchstabe "A", muss als <strong>Pfad</strong> und nicht als Text in doppelter Ausführung in einer eigen Layer gespeichert werden. Die Layer muss den Namen des Buchstaben tragen, also zB "A". Jeder Buchstabe muss doppelt sein, da dadurch die Breite des Buchstaben ermittelt wird.</li>
+		<li>Der oder die Vektoren für einen Buchstaben müssen in einer eigenen Layer mit dem Namen <code>[Buchstabe] path</code> gespeichert werden, also zB <code>A path</code>.</li>
+		<li>Die so erstellte Inkscape-Datei darf nicht als komprimierte oder optimierte Datei gespeichert werden, sondern als native Inkscape-Datei, da sonst Layernamen entfernt werden.</li>
+	</ul>
 	<object id="svg-export" type="image/svg+xml" data="paths_export.svg"></object>
 	<div style="border:1px solid black;margin:20px;">
-		<h1>1. Font as an Inkscape SVG file -> Font as JSON</h1>
+		<h2>1. Font as an Inkscape SVG file -> Font as JSON</h2>
 		<a id="path-json" href="" download="paths.json">Download Path JSON</a><br/>
 		Line Height: <span id="line-height"></span><button id="get-line-height">Get it</button>
 	</div>
 	<div style="border:1px solid black;margin:20px;">
-		<h1>2. Font as JSON + Text -> animated SVG</h1>
+		<h2>2. Font as JSON + Text -> animated SVG</h2>
 		<a id="animation-0" href="" download="animation-0.html">Download Animation 1</a><br/>
 		<a id="animation-1" href="" download="animation-1.html">Download Animation 2</a><br/>
 		<a id="animation-2" href="" download="animation-2.html">Download Animation 3</a>

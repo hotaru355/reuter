@@ -1,9 +1,34 @@
+/**
+ * index.js
+ *
+ * Generiert ein zufälliges Startseitenmenü.
+ */
+
 define([
 	'jquery',
 	'app/utils/grid',
 ], function($, Grid) {
 
 	var Index = {
+
+		/**
+		 * Generiert das Startseitenmenü mit folgenden Eigenschaften:
+		 *
+		 * - Die Menülinks erscheinen bei jedem Ausführen der Funktion an
+		 * zuälliger Stelle.
+		 *
+		 * - Jeder Link definiert per CSS 3 angrenzende Kacheln, deren
+		 * Hintergrund bei :hover sich mit ändert. Diese können sich für 2 Links
+		 * überlappen. Auch Links auf Rand- und Eckkacheln haben immer 3
+		 * hover-Kacheln.
+		 *
+		 * - Links sind nie benachbart, sodass die angrenzenden hover-Kacheln
+		 * nicht einen Link überlagern.
+		 * 
+		 * @param {string} containerSelector Der CSS-Selektor welcher das
+		 * Element mit allen Kacheln beschreibt.
+		 * @return {void}
+		 */
 		randomizeMenu : function(containerSelector) {
 			var menuTiles = [{
 				className: 'customers',
@@ -28,7 +53,7 @@ define([
 			}];
 			var container = $(containerSelector);
 
-			// generate all ids first
+			// zuerst erstellen wir alle IDs für alle Kacheln
 			var availableTileIds = [];
 			for (var row = 0; row < 5; row++) {
 				for (var col = 0; col < 8; col++) {
@@ -36,9 +61,11 @@ define([
 				}
 			}
 
-			// randomly place menu tiles
+			// dann wählen wir für jeden Menülink eine ID sowie 3 IDs für die
+			// hover-Kacheln und entfernen sie von den verfügbaren IDs
 			menuTiles.forEach(function(menu) {
 				var randIndex = Math.floor(Math.random() * availableTileIds.length);
+				// entferne die Menülink-ID von den verfügbaren IDs
 				var menuId = availableTileIds.splice(randIndex, 1)[0];
 				var cornerIds = Grid.getCornerTiles(menuId);
 				var hoverIds = cornerIds[Math.floor(Math.random() * cornerIds.length)];
@@ -56,7 +83,7 @@ define([
 						$('#' + hoverIds.join(',#')).removeClass('hover-' + menu.className);
 					})
 
-				// remove corner tiles from availble
+				// entferne die hover-Kacheln von den verfügbaren IDs
 				Grid.getCornerTilesUnique(menuId).forEach(function(cornerId) {
 					var aIdx = availableTileIds.indexOf(cornerId);
 					if (aIdx != -1) {

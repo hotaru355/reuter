@@ -1,3 +1,10 @@
+/**
+ * svgCompiler.js
+ *
+ * Ein Werkzeug zum Erstellen der animierten Schrift als SVG-Dateien. Für
+ * Anweisungen siehe public/svgCompiler/index.html.
+ */
+
 require.config({
     paths: {
         jquery: '../libs/jquery/jquery.1.11.1.min',
@@ -29,6 +36,9 @@ require([
     ];
 
     var compiler = {
+        /**
+         * Setzt die href für die Links in der Seite.
+         */
         setHrefs: function() {
             $(document).ready(function() {
                 var content, encodedUri;

@@ -1,3 +1,10 @@
+/**
+ * main.js
+ * 
+ * Einstiegspunkt der Anwendung. Hier werden Biblotheken definiert und
+ * die Initialisierung der Anwendung aufgerufen.
+ */
+
 require.config({
     paths: {
         jquery: 'libs/jquery/jquery.1.11.1.min',

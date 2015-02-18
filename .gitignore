@@ -1,4 +1,5 @@
-reuter.sublime-workspace
+*.sublime-project
+*.sublime-workspace
 public/js/main.js
 public/css/site.css*
 public/svgCompiler/svgCompiler-min.js

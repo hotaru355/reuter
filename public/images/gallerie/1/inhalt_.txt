@@ -1,1 +1,0 @@
-﻿&Bild1=Flur&&Bild2=Flur2&&Bild3=Flur3&&Bild4=Flur4&&Bild5=Flur5&&Bild6=Flur6&&Bild7=Flur7&&Bild8=Flur8&&Bild9=Flur9&&Bild10=Flur10&&Bild11=Flur11&&Bild12=Flur12&&Bild13=Flur13&&Bild14=Flur14&&Bild15=Flur15&&Bild16=Flur16&

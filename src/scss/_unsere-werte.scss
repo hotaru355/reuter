@@ -41,9 +41,8 @@
 }
 
 .values-btn {
+	@extend .base-round-btn;
 	background-color: $color-values;
-	border-radius: 50%;
-	border: grey 2px solid;
 }
 
 .handwriting path {

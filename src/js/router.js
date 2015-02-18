@@ -32,7 +32,8 @@ define([
             'unsere-arbeiten/leistungsspektrum': 'showPerformance',
             'unsere-arbeiten/pressestimmen': 'showPress',
             'unsere-kunden': 'showCustomers',
-            'kontakt': 'showContact',
+            'kontakt/kontakt-impressum': 'showContact',
+            'kontakt/sponsoring': 'showSponsoring',
 
             // Default
             '*ROUTE': 'defaultRoute'
@@ -53,7 +54,11 @@ define([
         });
         appRouter.on('route:showContact', function() {
             var contactView = new ContactView();
-            contactView.render();
+            contactView.render(0);
+        });
+        appRouter.on('route:showSponsoring', function() {
+            var contactView = new ContactView();
+            contactView.render(1);
         });
         appRouter.on('route:showAboutUs', function() {
             var aboutusView = new AboutUsView();

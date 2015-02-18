@@ -17,6 +17,9 @@
 <% 		if (employee.specialty) { %>
 			<p><em>Spezialgebiet:</em> <%= employee.specialty %></p>
 <%		}
+		if (employee.future) { %>
+			<p><em>Zukunft: </em> <%= employee.future %></p>
+<%		}
 		if (employee.favorite) { %>
 			<p><em>Lieblingsarbeit: </em> <%= employee.favorite %></p>
 <%		} %>

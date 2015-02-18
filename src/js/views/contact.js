@@ -9,17 +9,20 @@ define([
     'underscore',
     'backbone',
     'app/menu',
-    'text!partials/contact.html'
-], function($, _, Backbone, menu, contactPartial) {
+    'text!partials/contact/contact.html',
+    'text!partials/contact/sponsoring.html'
+], function($, _, Backbone, menu, contactPartial, sponsoringPartial) {
 
     var ContactView = Backbone.View.extend({
         el: "#page",
 
-        render: function() {
+        render: function(subIndex) {
             var self = this;
 
-            menu.init(5, null, function() {
-                self.$el.html(contactPartial);
+            var subPages = [contactPartial, sponsoringPartial];
+
+            menu.init(5, subIndex, function() {
+                self.$el.html(subPages[subIndex]);
             });
         }
     });

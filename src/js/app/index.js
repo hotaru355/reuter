@@ -41,7 +41,7 @@ define([
 			}, {
 				className: 'contact',
 				label: 'Kontakt',
-				url: 'kontakt'
+				url: 'kontakt/kontakt-impressum'
 			}, {
 				className: 'values',
 				label: 'Unsere Werte',

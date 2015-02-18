@@ -12,12 +12,18 @@
 	z-index: 1;
 }
 
-// a scroller inside most pages
-.content-scroller {
-	overflow: auto;
+// base content class
+.content {
+	position: relative;
 	width: 100%;
 	height: 85%;
 	padding: 20px 20px 20px 0;
+}
+
+// a scroller inside most pages
+.content-scroller {
+	@extend .content;
+	overflow: auto;
 }
 
 // Reuter logo in upper right
@@ -87,3 +93,29 @@
 		display: none !important;
 	}
 }
+
+.scroll-buttons {
+	position: absolute;
+	right: 20px;
+	bottom: 20px;
+	width: 80px;
+	height: 36px;
+}
+
+.base-round-btn {
+	width: 36px;
+	height: 36px;
+	border: 2px solid grey;
+	border-radius: 50%;
+	padding: 8px;
+	outline: none;
+}
+
+.scroll-up, .scroll-down {
+	@extend .base-round-btn;
+
+	&[disabled] svg {
+		opacity: 0.5;
+	}
+}
+

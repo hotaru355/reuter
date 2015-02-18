@@ -24,14 +24,14 @@ define([
     // an teamTemplate übergeben. In einer dynamischen Anwendung würden diese
     // Daten von einer Datenbank kommen.
     var employees = [{
-        name: 'Karl-Heinz Dumke',
-        image: 'Dumke.jpg',
+        name: 'Rafael Szumny',
+        image: 'Szumny.jpg',
         title: 'Malergeselle',
-        bio: 'geboren 1947, verheiratet',
-        exp: 48,
-        expInHouse: 25,
-        specialty: 'Moderne Beschichtungs-systeme, Altbausanierung.',
-        favorite: 'Wohnungsrenovierung und Bestandsrestauration im Altbau.'
+        bio: 'geboren 1983, ledig',
+        exp: 6,
+        expInHouse: 1,
+        specialty: 'Bodenbelagsarbeiten, Trockenbau, WDVS, Restauration in Putz, moderne Anstrichsysteme.',
+        favorite: 'Großbaustellen.'
     }, {
         name: 'Jürgen Knippschild',
         image: 'Knippschild_J.jpg',
@@ -42,22 +42,6 @@ define([
         specialty: 'moderne Gestaltungs-techniken, hochwertigste Tapezierungen und Beschichtungstechniken.',
         favorite: 'Tapezieren und Lackieren.'
     }, {
-        name: 'Sascha Knippschild',
-        image: 'Knippschild_S.jpg',
-        title: 'Malergeselle',
-        bio: 'geboren 1992, ledig',
-        specialty: '… es bleibt spannend.',
-        favorite: '… bis jetzt: Streichen! …Tapeten entfernen jedenfalls nicht.'
-    }, {
-        name: 'Viktor Neubauer',
-        image: 'Neubauer.jpg',
-        title: 'Malergeselle',
-        bio: 'geboren 1970, verheiratet, 2 Kinder',
-        exp: 14,
-        expInHouse: 4,
-        specialty: 'Restaurationen in Putz, WDVS, moderne Anstrichsysteme, Bodenbeläge.',
-        favorite: '…alles! - Aber am liebsten an der frischen Luft.'
-    }, {
         name: 'Ralf Obrecht',
         image: 'Obrecht.jpg',
         title: 'Malergeselle',
@@ -66,6 +50,20 @@ define([
         expInHouse: 28,
         specialty: 'Holzwerkstoffe, Lasurtechniken, moderne Gestaltungstechniken, Tapezierungen.',
         favorite: 'Möbelrestaurationen (antik, historisch).'
+    }, {
+        name: 'Dieter Schmidt',
+        image: 'Schmidt.jpg',
+        title: 'Malergeselle',
+        bio: 'geboren 1960',
+        exp: 35,
+        specialty: 'Decor-Putzarbeiten, aktuelle Lacktechniken'
+    }, {
+        name: 'Mangesius',
+        image: 'Mangesius.jpg',
+        title: '?',
+        bio: '?',
+        specialty: '?',
+        favorite: '?'
     }, {
         name: 'Jürgen Schinzel',
         image: 'Schinzel.jpg',
@@ -76,37 +74,38 @@ define([
         specialty: 'Moderne Anstrichsysteme und Lackierungen.',
         favorite: 'Fassadenrenovierung am Altbau.'
     }, {
-        name: 'Dieter Schmidt',
-        image: 'Schmidt.jpg',
-        title: 'Malergeselle',
-        bio: 'geboren 1960',
-        exp: 35,
-        specialty: 'Decor-Putzarbeiten, aktuelle Lacktechniken'
+        name: 'Karl-Heinz Dumke',
+        image: 'Dumke.jpg',
+        title: '„Ehrendoktor“  ;-)',
+        bio: 'geboren 1947, verheiratet',
+        exp: 48,
+        expInHouse: 25,
+        specialty: 'Moderne Beschichtungs-systeme, Altbausanierung.',
+        favorite: 'Wohnungsrenovierung und Bestandsrestauration im Altbau.'
     }, {
-        name: 'Rafael Szumny',
-        image: 'Szumny.jpg',
-        title: 'Malergeselle',
-        bio: 'geboren 1983, ledig',
-        exp: 6,
-        expInHouse: 1,
-        specialty: 'Bodenbelagsarbeiten, Trockenbau, WDVS, Restauration in Putz, moderne Anstrichsysteme.',
-        favorite: 'Großbaustellen.'
+        name: 'Sinan Gezmis',
+        image: 'Gezmis.jpg',
+        title: '3. Ausbildungsjahr zum Maler und Lackierer',
+        bio: 'geboren 1993',
+        specialty: '… entwickelt sich konstant gut weiter!',
+        future: 'Sehr gutes Potential für die großen Aufgaben eines Malerlebens ;-)!',
+        favorite: 'Sehr gutes Potential für die großen Aufgaben eines Malerlebens ;-)!'
     }, {
-        name: 'Eckard Unger',
-        image: 'Unger.jpg',
-        title: 'Malergeselle',
-        bio: 'geboren 1950, verheiratet',
-        exp: 37,
-        expInHouse: 12,
-        specialty: 'moderne Gestaltungstechniken, hochwertigste Beschichtungen.',
-        favorite: '…einfach streichen und lackieren.'
+        name: 'Moritz Ehmer',
+        image: 'Ehmer.jpg',
+        title: '3. Ausbildungsjahr zum Maler und Lackierer',
+        bio: 'geboren 1994',
+        specialty: '… entwickelt sich konstant gut weiter!',
+        future: 'Potential nach ganz weit vorne zu kommen!',
+        favorite: 'Streichen und lackieren.'
     }, {
-        name: 'Julian Reh',
-        image: 'Reh.jpg',
+        name: 'Domenic Wilke',
+        image: 'Wilke.jpg',
         title: '2. Ausbildungsjahr zum Maler und Lackierer',
-        bio: 'geboren 1992, ledig',
-        specialty: '… entwickelt sich konstant.',
-        favorite: 'Streichen.'
+        bio: 'geboren 1994',
+        specialty: '… entwickelt sich konstant gut weiter!',
+        future: 'Erst mal Geselle werden!',
+        favorite: 'Streichen und lackieren.'
     }];
 
     var IndexView = Backbone.View.extend({

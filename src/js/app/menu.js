@@ -19,14 +19,13 @@ define([
 		['background-values.jpg'],
 		[null, null, 'background-spectrum.jpg', 'background-press.jpg'],
 		['background-customers.jpg'],
-		['background-contact.jpg'],
+		['background-contact.jpg', 'background-contact.jpg'],
 	];
 
 	var submenu = {
 		start: [],
 		values: [],
 		customers: [],
-		contact: [],
 	 	aboutus: [{
 			label: 'Frank Reuter',
 			url: 'ueber-uns/frank-reuter',
@@ -61,6 +60,13 @@ define([
 		}, {
 			label: 'Presse&shy;stimmen',
 			url: 'unsere-arbeiten/pressestimmen',
+		}],
+		contact: [{
+			label: 'Kontakt / Impressum',
+			url: 'kontakt/kontakt-impressum',
+		}, {
+			label: 'Sponsoring',
+			url: 'kontakt/sponsoring',
 		}]
 	};
 
@@ -101,8 +107,8 @@ define([
 	 * @param {number} navIndex    Index der Hauptseite. 0: Startseite, 1: "Über
 	 *                             Uns", 2: "Unsere Werte", 3: "Unsere Arbeit",
 	 *                             4: "Kunden", 5: "Kontakt"
-	 * @param {nuber} subNavIndex Index der Unterseit. Nur sinnvoll für
-	 *                            navIndex=[1,3].
+	 * @param {nuber} subNavIndex Index der Unterseite. Nur sinnvoll für
+	 *                            navIndex=[1,3,5].
 	 */
 	var setNavs = function(navIndex, subNavIndex) {
 		var navItem = navItems[navIndex];
@@ -235,6 +241,28 @@ define([
 		$(selector.tileRow + ' > ' + selector.tile).attr('class', 'tile');
 	};
 
+	var bindScrollButtons = function() {
+		var scroller = $('.content-scroller');
+		$('.scroll-up').prop('disabled', true);
+		$('.scroll-down').prop('disabled', false);
+		if (scroller.length) {
+			$('.scroll-buttons').show();
+			scroller.scroll(function() {
+				var maxY = scroller.prop('scrollHeight') - scroller.prop('offsetHeight') - 1;
+				if (scroller.scrollTop() <= 0) {
+					$('.scroll-up').prop('disabled', true);
+				} else if (scroller.scrollTop() >= maxY) {
+					$('.scroll-down').prop('disabled', true);
+				} else {
+					$('.scroll-up').prop('disabled', false);
+					$('.scroll-down').prop('disabled', false);
+				}
+			})
+		} else {
+			$('.scroll-buttons').hide();
+		}
+	}
+
 	var Menu = {
 
 		/**
@@ -273,6 +301,7 @@ define([
 				}
 				if (onFadedOut) {
 					onFadedOut.call();
+					bindScrollButtons();
 				}
 				fadeInOut(true, onFadedIn);
 			});
@@ -284,8 +313,9 @@ define([
 		bindControls: function() {
 			$('.collapse-icon').click(function() {
 				var icon;
-				var subMenu = $(this).parent().hasClass('nav-aboutus') ? '#sub-nav-aboutus' :
-					($(this).parent().hasClass('nav-work') ? '#sub-nav-work' : '');
+				var subMenu = '#sub-' + $(this).parent().attr('class').split(' ').filter(function(classValue) {
+					return classValue.substr(0, 4) == 'nav-';
+				})[0];
 				if (subMenu) {
 					if ($(subMenu).hasClass('collapsed')) {
 						icon = '/images/icons/minus.svg';
@@ -301,6 +331,18 @@ define([
 			});
 			$('.menu-icon').click(function() {
 				$('#nav-main').toggleClass('slided-out')
+			});
+			$('.scroll-up').click(function() {
+				var y = $('.content-scroller').scrollTop() - 25;
+				y = (y > 0) ? y : 0;
+				$('.content-scroller').scrollTop(y);
+			});
+			$('.scroll-down').click(function() {
+				var scroller = $('.content-scroller');
+				var maxY = scroller.prop('scrollHeight') - scroller.prop('offsetHeight');
+				var y = scroller.scrollTop() + 25;
+				y = (y < maxY) ? y : maxY;
+				scroller.scrollTop(y);
 			});
 		}
 	};

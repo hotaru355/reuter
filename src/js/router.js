@@ -34,6 +34,7 @@ define([
             'unsere-kunden': 'showCustomers',
             'kontakt/kontakt-impressum': 'showContact',
             'kontakt/sponsoring': 'showSponsoring',
+            'kontakt/jobs': 'showJobs',
 
             // Default
             '*ROUTE': 'defaultRoute'
@@ -59,6 +60,10 @@ define([
         appRouter.on('route:showSponsoring', function() {
             var contactView = new ContactView();
             contactView.render(1);
+        });
+        appRouter.on('route:showJobs', function() {
+            var contactView = new ContactView();
+            contactView.render(2);
         });
         appRouter.on('route:showAboutUs', function() {
             var aboutusView = new AboutUsView();

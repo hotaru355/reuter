@@ -58,12 +58,14 @@ define([
         exp: 35,
         specialty: 'Decor-Putzarbeiten, aktuelle Lacktechniken'
     }, {
-        name: 'Mangesius',
-        image: 'Mangesius.jpg',
-        title: '?',
-        bio: '?',
-        specialty: '?',
-        favorite: '?'
+        name: 'Eckard Unger',
+        image: 'Unger.jpg',
+        title: 'Malergeselle',
+        bio: 'geboren 1950, verheiratet',
+        exp: 37,
+        expInHouse: 12,
+        specialty: 'moderne Gestaltungstechniken, hochwertigste Beschichtungen.',
+        favorite: '…einfach streichen und lackieren.'
     }, {
         name: 'Jürgen Schinzel',
         image: 'Schinzel.jpg',
@@ -89,7 +91,7 @@ define([
         bio: 'geboren 1993',
         specialty: '… entwickelt sich konstant gut weiter!',
         future: 'Sehr gutes Potential für die großen Aufgaben eines Malerlebens ;-)!',
-        favorite: 'Sehr gutes Potential für die großen Aufgaben eines Malerlebens ;-)!'
+        favorite: 'Vliestapeten kleben.'
     }, {
         name: 'Moritz Ehmer',
         image: 'Ehmer.jpg',

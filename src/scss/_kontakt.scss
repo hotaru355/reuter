@@ -1,3 +1,25 @@
 .full-width {
 	width: 100%;
 }
+
+.task-list,
+.profile-list,
+.offer-list {
+	padding-right: 50px;
+	margin-bottom: 35px;
+	li {
+		margin-bottom: 10px;
+	}
+}
+
+.task-list {
+	list-style-image: url('/images/icons/brush.svg');
+}
+
+.profile-list {
+	list-style-image: url('/images/icons/profile.svg');
+}
+
+.offer-list {
+	list-style-image: url('/images/icons/thumbs.svg');
+}

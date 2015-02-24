@@ -44,6 +44,16 @@
 	border: black 1px solid;
 }
 
+.heinz-herwig {	
+	color: #B61B06;
+	font-family: arial;
+	font-size: x-large;
+	&:hover {
+		color: #B61B06;
+		text-decoration: underline;
+	}
+}
+
 #ohne-uns-vid, #lebensaufgabe-vid {
 	height: 85%;
 }

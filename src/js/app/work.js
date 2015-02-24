@@ -38,7 +38,13 @@ define([
 					.removeClass('faded-out');
 				visible.addClass('faded-out');
 			})
-			$('.tile-row a:eq(0)').click();
+
+			// Zeige das erste Bild durch Klicken eines Thumbnails
+			if (folder == '1') {
+				$('.tile-row a:eq(9)').click(); // Reuter-Extrawurst ;)
+			} else {
+				$('.tile-row a:eq(0)').click();				
+			}
 		},
 
 		/**

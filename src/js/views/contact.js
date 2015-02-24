@@ -10,8 +10,9 @@ define([
     'backbone',
     'app/menu',
     'text!partials/contact/contact.html',
-    'text!partials/contact/sponsoring.html'
-], function($, _, Backbone, menu, contactPartial, sponsoringPartial) {
+    'text!partials/contact/sponsoring.html',
+    'text!partials/contact/jobs.html'
+], function($, _, Backbone, menu, contactPartial, sponsoringPartial, jobsPartial) {
 
     var ContactView = Backbone.View.extend({
         el: "#page",
@@ -19,7 +20,7 @@ define([
         render: function(subIndex) {
             var self = this;
 
-            var subPages = [contactPartial, sponsoringPartial];
+            var subPages = [contactPartial, sponsoringPartial, jobsPartial];
 
             menu.init(5, subIndex, function() {
                 self.$el.html(subPages[subIndex]);

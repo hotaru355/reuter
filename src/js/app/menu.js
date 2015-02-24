@@ -19,7 +19,7 @@ define([
 		['background-values.jpg'],
 		[null, null, 'background-spectrum.jpg', 'background-press.jpg'],
 		['background-customers.jpg'],
-		['background-contact.jpg', 'background-contact.jpg'],
+		['background-contact.jpg', 'background-contact.jpg', 'background-contact.jpg'],
 	];
 
 	var submenu = {
@@ -67,6 +67,9 @@ define([
 		}, {
 			label: 'Sponsoring',
 			url: 'kontakt/sponsoring',
+		}, {
+			label: 'Jobs',
+			url: 'kontakt/jobs',
 		}]
 	};
 

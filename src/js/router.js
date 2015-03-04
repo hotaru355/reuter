@@ -34,7 +34,8 @@ define([
             'unsere-kunden': 'showCustomers',
             'kontakt/kontakt-impressum': 'showContact',
             'kontakt/sponsoring': 'showSponsoring',
-            'kontakt/jobs': 'showJobs',
+            'kontakt/jobs-gesellen': 'showJobsGesellen',
+            'kontakt/jobs-lehre': 'showJobsLehre',
 
             // Default
             '*ROUTE': 'defaultRoute'
@@ -61,9 +62,13 @@ define([
             var contactView = new ContactView();
             contactView.render(1);
         });
-        appRouter.on('route:showJobs', function() {
+        appRouter.on('route:showJobsGesellen', function() {
             var contactView = new ContactView();
             contactView.render(2);
+        });
+        appRouter.on('route:showJobsLehre', function() {
+            var contactView = new ContactView();
+            contactView.render(3);
         });
         appRouter.on('route:showAboutUs', function() {
             var aboutusView = new AboutUsView();

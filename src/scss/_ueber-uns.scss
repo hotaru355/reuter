@@ -33,7 +33,7 @@
 }
 
 .partner-image-half {
-	width: 40%;
+	width: 100%;
 	margin: 30px 0;
 	border: black 1px solid;
 }
@@ -53,6 +53,65 @@
 		text-decoration: underline;
 	}
 }
+
+.content-slider {
+	width: 100%;
+	height: 80%;
+}
+
+.sliding-list {
+	@extend .nondeco-list;
+	position: relative;
+	top: 25%;
+	left: 25%;
+	width: 50%;
+	height: 50%;
+	@include perspective(1000px);
+	@include transform-style(preserve-3d);
+	li {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		visibility: hidden;
+		@include transition(transform 1s, opacity 2s);
+	}
+}
+
+li.slided-preleft {
+	opacity: 0;
+	visibility: visible;
+	@include transform(translateX(-75%) translateZ(-300px) rotateY(70deg));
+}
+
+li.slided-left {
+	opacity: 1;
+	visibility: visible;
+	@include transform(translateX(-70%) translateZ(-200px) rotateY(50deg));
+	box-shadow: 5px 20px 10px rgba(0,0,0,0.3);
+}
+
+li.slided-middle {
+	opacity: 1;
+	visibility: visible;
+	@include transform(translateX(0) translateZ(0) rotateY(0));
+	box-shadow: 0px 20px 10px rgba(0,0,0,0.3);
+}
+
+li.slided-right {
+	opacity: 1;
+	visibility: visible;
+	@include transform(translateX(70%) translateZ(-200px) rotateY(-50deg));
+	box-shadow: -5px 20px 10px rgba(0,0,0,0.3);
+}
+
+li.slided-preright {
+	opacity: 0;
+	visibility: visible;
+	@include transform(translateX(75%) translateZ(-300px) rotateY(-70deg));
+}
+
 
 #ohne-uns-vid, #lebensaufgabe-vid {
 	height: 85%;

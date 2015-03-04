@@ -134,8 +134,12 @@ define([
 
             menu.init(1, subIndex, function() {
 
-                // einfach nur die Unterseite einfügen
-                self.$el.html(subPages[subIndex]);
+                if (subIndex == 4) {
+                    $('#page-large').html(partnerPartial);
+                } else {
+                    // einfach nur die Unterseite einfügen
+                    self.$el.html(subPages[subIndex]);
+                }
 
                 // nur für die partner.html laden wir die Bootstrap-Tooltips
                 if (subIndex == 4) {

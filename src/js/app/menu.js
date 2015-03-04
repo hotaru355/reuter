@@ -9,67 +9,80 @@ define([
 	'jquery'
 ], function($) {
 
-	var navItems = ['nav-start','nav-aboutus','nav-values','nav-work','nav-customers','nav-contact'];
+	var navItems = ['nav-start', 'nav-aboutus', 'nav-values', 'nav-work', 'nav-customers', 'nav-contact'];
 
-	var imagesByNavIndex = [
-		['background-start.jpg'],
-		['background-aboutus.jpg', 'background-aboutus.jpg', 'background-aboutus.jpg',
-			'background-aboutus.jpg', 'background-aboutus.jpg', 'background-aboutus.jpg',
-			'background-aboutus.jpg'],
-		['background-values.jpg'],
-		[null, null, 'background-spectrum.jpg', 'background-press.jpg'],
-		['background-customers.jpg'],
-		['background-contact.jpg', 'background-contact.jpg', 'background-contact.jpg'],
-	];
-
-	var submenu = {
-		start: [],
-		values: [],
-		customers: [],
-	 	aboutus: [{
+	var subMenu = {
+		start: [{
+			background: 'background-start.jpg'
+		}],
+		aboutus: [{
 			label: 'Frank Reuter',
 			url: 'ueber-uns/frank-reuter',
+			background: 'background-aboutus.jpg'
 		}, {
 			label: 'Assistenz',
 			url: 'ueber-uns/assistenz',
+			background: 'background-aboutus.jpg'
 		}, {
 			label: 'Das Team',
 			url: 'ueber-uns/team',
+			background: 'background-aboutus.jpg'
 		}, {
 			label: 'Chronik',
 			url: 'ueber-uns/chronik',
+			background: 'background-aboutus.jpg'
 		}, {
 			label: 'Partner',
 			url: 'ueber-uns/partner',
+			background: 'background-aboutus.jpg'
 		}, {
 			label: 'ohne uns',
 			url: 'ueber-uns/ohne-uns',
+			background: 'background-aboutus.jpg'
 		}, {
 			label: 'Lebens&shy;aufgabe',
 			url: 'ueber-uns/lebensaufgabe',
+			background: 'background-aboutus.jpg'
+		}],
+		values: [{
+			background: 'background-values.jpg'
 		}],
 		work: [{
 			label: 'Farbe im Raum',
 			url: 'unsere-arbeiten/raum',
 		}, {
-			label: 'Farbe im Aussenbereich',
+			label: 'Farbe im Außenbereich',
 			url: 'unsere-arbeiten/aussenbereich',
 		}, {
 			label: 'Leistuns&shy;spektrum',
 			url: 'unsere-arbeiten/leistungsspektrum',
+			background: 'background-spectrum.jpg'
 		}, {
 			label: 'Presse&shy;stimmen',
 			url: 'unsere-arbeiten/pressestimmen',
+			background: 'background-press.jpg'
+		}],
+		customers: [{
+			label: 'Presse&shy;stimmen',
+			url: 'unsere-arbeiten/pressestimmen',
+			background: 'background-customers.jpg'
 		}],
 		contact: [{
 			label: 'Kontakt / Impressum',
 			url: 'kontakt/kontakt-impressum',
+			background: 'background-contact.jpg'
 		}, {
 			label: 'Sponsoring',
 			url: 'kontakt/sponsoring',
+			background: 'background-contact.jpg'
 		}, {
-			label: 'Jobs',
-			url: 'kontakt/jobs',
+			label: 'Jobs - Gesellen',
+			url: 'kontakt/jobs-gesellen',
+			background: 'background-contact.jpg'
+		}, {
+			label: 'Jobs - Lehre',
+			url: 'kontakt/jobs-lehre',
+			background: 'background-contact.jpg'
 		}]
 	};
 
@@ -83,11 +96,11 @@ define([
 
 	/**
 	 * Lüftet den "Vorhang" bzw lässt ihn fallen.
-	 * 
+	 *
 	 * @param {boolean} isIn    	Lüftet den Vorhang wenn 'true', ansonsten lässt
 	 *                           	ihn fallen
 	 * @param {function}  onFaded 	Callback, wenn der Effekt zu ende ist
-	 * @return {void}  
+	 * @return {void}
 	 */
 	var fadeInOut = function(isIn, onFaded) {
 		var delayRange = 1;
@@ -95,7 +108,7 @@ define([
 		var blinds = $('.blind');
 		blinds.each(function() {
 			$(this).css({
-				'transition-delay': +Math.random().toFixed(2) * delayRange +'s',
+				'transition-delay': +Math.random().toFixed(2) * delayRange + 's',
 				'transition-duration': duration + 's',
 				opacity: isIn ? 0 : 1,
 				transform: isIn ? 'rotateY(90deg)' : 'rotateY(0deg)'
@@ -106,7 +119,7 @@ define([
 
 	/**
 	 * Passt die obere und untere Navigationsleiste der ausgewählten Seite an.
-	 * 
+	 *
 	 * @param {number} navIndex    Index der Hauptseite. 0: Startseite, 1: "Über
 	 *                             Uns", 2: "Unsere Werte", 3: "Unsere Arbeit",
 	 *                             4: "Kunden", 5: "Kontakt"
@@ -132,9 +145,9 @@ define([
 		}
 
 		// sub nav
-		var subnavs = submenu[navItem.substr(4)];
+		var subnavs = subMenu[navItem.substr(4)];
 		// only redraw sub nav if different to previous
-		if (! $('#nav-sub .tile:first-child').hasClass(navItem)) {
+		if (!$('#nav-sub .tile:first-child').hasClass(navItem)) {
 			$('#nav-sub').addClass('faded-out'); // fade out
 			setTimeout(function() {
 				$('#nav-sub a:not(.mail-icon)').remove();
@@ -142,7 +155,7 @@ define([
 					$(this).attr('class', 'tile'); // clear previous navs
 					if (index < subnavs.length) {
 						$(this).addClass(navItem)
-						.append('<a class="nav-link" href="#/' + subnavs[index].url + '">' + subnavs[index].label + '</a>');
+							.append('<a class="nav-link" href="#/' + subnavs[index].url + '">' + subnavs[index].label + '</a>');
 						if (subNavIndex == index) {
 							$(this).addClass('selected');
 						}
@@ -181,8 +194,7 @@ define([
 
 	/**
 	 * Passt das Hintergrundbild der ausgewählten Seite an.
-	 * Zuordnung definiert durch 'imagesByNavIndex'.
-	 *  
+	 *
 	 * @param {number} navIndex    Index der Hauptseite. 0: Startseite, 1: "Über
 	 *                             Uns", 2: "Unsere Werte", 3: "Unsere Arbeit",
 	 *                             4: "Kunden", 5: "Kontakt"
@@ -191,7 +203,7 @@ define([
 	 */
 	var setBackground = function(navIndex, subNavIndex) {
 		subNavIndex = subNavIndex || 0;
-		var imgUrl = imagesByNavIndex[navIndex][subNavIndex];
+		var imgUrl = subMenu[Object.keys(subMenu)[navIndex]][subNavIndex].background;
 		var fullUrl = 'none';
 		if (imgUrl) {
 			fullUrl = 'url("/images/hintergrund/' + imgUrl + '")';
@@ -205,8 +217,7 @@ define([
 	 * Fügt transparent-weisse Kacheln hinzu auf denen der eigentliche
 	 * Seiteninhalt dargestellt wird.
 	 */
-	var addContentTiles = function() {
-		var startFrom = [2,3,3,3,5];
+	var addContentTiles = function(startFrom) {
 		$(selector.tileRow).each(function(rowIndex) {
 			$(this).find('.tile').each(function(colIndex) {
 				if (colIndex >= startFrom[rowIndex]) {
@@ -265,6 +276,55 @@ define([
 			$('.scroll-buttons').hide();
 		}
 	}
+	
+	var bindSlideButtons = function() {
+		var slideIdx = 1;
+		var slider = $('.content-slider');
+		var maxIdx = $('.sliding-list li').length;
+		function prev(idx, num) {
+			return (idx - num) >= 0 ? (idx - num) : (idx - num + maxIdx);
+		}
+		function next(idx, num) {
+			return (idx + num) < maxIdx ? (idx + num) : (idx + num - maxIdx);
+		}
+		function slidePics(slideIdx) {
+			$('.sliding-list li').each(function(index) {
+				var item = $(this);
+				item.attr('class', '');
+				switch (index) {
+					case prev(slideIdx, 2):
+						item.addClass('slided-preleft');
+						break;
+					case prev(slideIdx, 1):
+						item.addClass('slided-left');
+						break;
+					case slideIdx:
+						item.addClass('slided-middle');
+						break;
+					case next(slideIdx, 1):
+						item.addClass('slided-right');
+						break;
+					case next(slideIdx, 2):
+						item.addClass('slided-preright');
+						break;
+				}
+			})
+		}
+
+		if (slider.length) {
+			$('.slide-buttons').show();
+			$('.slide-left').click(function() {
+				slideIdx = prev(slideIdx, 1);
+				slidePics(slideIdx);
+			});
+			$('.slide-right').click(function() {
+				slideIdx = next(slideIdx, 1);
+				slidePics(slideIdx);
+			});
+		} else {
+			$('.slide-buttons').hide();
+		}
+	}
 
 	var Menu = {
 
@@ -275,7 +335,7 @@ define([
 		 * 2. onFadedOut wird ausgeführt
 		 * 3. Vorhang lüftet sich
 		 * 4. onFadedIn wird ausgeführt
-		 * 
+		 *
 		 * @param {number} navIndex    Index der Hauptseite. 0: Startseite, 1:
 		 *                             "Über Uns", 2: "Unsere Werte",
 		 *                             3: "Unsere Arbeit", 4: "Kunden",
@@ -285,9 +345,12 @@ define([
 		 * @param {function} onFadedOut  Callback, wenn der Vorhang gefallen ist
 		 * @param {function} onFadedIn   Callback, wenn der Vorhang sich wieder
 		 *                               lüftet
-		 * @return {void} 
+		 * @return {void}
 		 */
 		init: function(navIndex, subNavIndex, onFadedOut, onFadedIn) {
+			var isPartnerPage = (navIndex == 1 && subNavIndex == 4);
+			var startFrom = isPartnerPage ? [1, 2, 2, 2, 4] : [2, 3, 3, 3, 5];
+
 			setNavs(navIndex, subNavIndex);
 			fadeInOut(false, function() {
 				setBackground(navIndex, subNavIndex);
@@ -295,16 +358,24 @@ define([
 				if (navIndex == 0) {
 					removeContentTiles();
 					$('#page').hide();
+					$('#page-large').hide();
 					$('.menu-icon').hide();
 					$('#nav-main').removeClass('slided-out')
 				} else {
-					addContentTiles();
-					$('#page').show();
+					addContentTiles(startFrom);
+					if (isPartnerPage) {
+						$('#page').hide();
+						$('#page-large').show();
+					} else {
+						$('#page').show();
+						$('#page-large').hide();
+					}
 					$('.menu-icon').show();
 				}
 				if (onFadedOut) {
 					onFadedOut.call();
 					bindScrollButtons();
+					bindSlideButtons();
 				}
 				fadeInOut(true, onFadedIn);
 			});

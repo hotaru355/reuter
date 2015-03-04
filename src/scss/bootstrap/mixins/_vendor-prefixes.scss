@@ -178,7 +178,20 @@
       -ms-transform-origin: $origin; // IE9 only
           transform-origin: $origin;
 }
+@mixin transform($params) {
+  -webkit-transform: $params;
+     -moz-transform: $params;
+      -ms-transform: $params; // IE9 only
+          transform: $params;
+}
 
+@mixin transform-style($style) {
+  -webkit-transform-style: $style;
+     -moz-transform-style: $style;
+      -ms-transform-style: $style;
+       -o-transform-style: $style;
+          transform-style: $style;
+}
 
 // Transitions
 

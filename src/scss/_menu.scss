@@ -12,6 +12,15 @@
 	z-index: 1;
 }
 
+#page-large {
+	position: absolute;
+	top: 20%;
+	left: 20%;
+	width: 550%;
+	height: 360%;
+	z-index: 1;
+}
+
 // base content class
 .content {
 	position: relative;
@@ -94,7 +103,7 @@
 	}
 }
 
-.scroll-buttons {
+.scroll-buttons, .slide-buttons {
 	position: absolute;
 	right: 20px;
 	bottom: 20px;
@@ -111,7 +120,7 @@
 	outline: none;
 }
 
-.scroll-up, .scroll-down {
+.scroll-up, .scroll-down, .slide-left, .slide-right {
 	@extend .base-round-btn;
 
 	&[disabled] svg {

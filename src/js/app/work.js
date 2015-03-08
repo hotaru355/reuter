@@ -5,8 +5,8 @@
  */
 
 define([
-	'jquery'
-], function($) {
+	'jquery', 'app/menu'
+], function($, menu) {
 	var work = {
 
 		/**
@@ -19,16 +19,23 @@ define([
 		initGallery: function(folder) {
 			var imgIdx = 0;
 			var randIndexes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+			var imageUrls = [];
+
 			$('.tile-row').each(function() {
 				$(this).find('.tile:not(.content-tile, .content-tile-top, .content-tile-right, .content-tile-topRight)').each(function() {
-					var src = 'images/gallerie/' + folder + '/image' + (++imgIdx) + '_.jpg';
+					var baseUrl = 'images/gallerie/' + folder + '/image' + (++imgIdx);
 					var rand = Math.floor(Math.random() * randIndexes.length);
 					var randIndex = randIndexes[rand];
 					randIndexes.splice(rand, 1);
 					$(this).append('<a class="thumb-container" href="javascript:"><img class="thumb faded-out fade-in-rand-'
-						+ randIndex + '" src="' + src + '" /></a>');
+						+ randIndex + '" src="' + baseUrl + '_.jpg" /></a>');
+					imageUrls.push(baseUrl + '.jpg');
 				})
 			})
+
+			// Lade Bilder in den Browsercache
+			menu.preloadImages(imageUrls);
+
 			// Mit hilfe von 2 DIVs wird ein Bild ausgeblendet und das nächste
 			// eingeblendet
 			$('.thumb-container').click(function() {
@@ -41,9 +48,9 @@ define([
 
 			// Zeige das erste Bild durch Klicken eines Thumbnails
 			if (folder == '1') {
-				$('.tile-row a:eq(9)').click(); // Reuter-Extrawurst ;)
+				$('.thumb-container:eq(8)').click(); // Reuter-Extrawurst ;)
 			} else {
-				$('.tile-row a:eq(0)').click();				
+				$('.thumb-container:eq(0)').click();				
 			}
 		},
 

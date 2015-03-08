@@ -8,9 +8,9 @@
 <%	customers.forEach(function(cust) { %>
 		<li>
 <%		cust.imgUrls.forEach(function(imgUrl) { %>
-			<img src="images/unsere_kunden/<%= imgUrl %>" alt="<%= cust.alt %>" />
+			<img src="images/unsere_kunden/<%= imgUrl %>" alt="<%= cust.alt %>" class="customer-image-<%= (cust.isDouble) ? 'double' : 'single'%>"/>
 <%		}); %>
-			<p class="<%= (cust.imgUrls.length == 1) ? 'desc-right' : 'desc-bottom' %>"><% if (cust.job) { %><%= cust.job %><br><% } %><%= cust.name %></p>
+			<p class="<%= (cust.imgUrls.length > 1 || cust.isDouble) ? 'desc-bottom' : 'desc-right' %>"><% if (cust.job) { %><%= cust.job %><br><% } %><%= cust.name %></p>
 		</li>
 <%	}); %>
 </div>

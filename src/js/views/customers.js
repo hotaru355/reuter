@@ -16,7 +16,12 @@ define([
     // an customersTemplate übergeben. In einer dynamischen Anwendung würden diese
     // Daten von einer Datenbank kommen.
     var customers = [{
-        name: 'Stadt Kassel',
+        name: 'Bad Wilhelmshöhe',
+        job: 'Schlosshotel',
+        imgUrls: ['0.jpg'],
+        alt: 'Schlosshotel Bad Wilhelmshöhe',
+        isDouble: true
+    }, {        name: 'Stadt Kassel',
         job: 'Museum Fridericianum',
         imgUrls: ['1.jpg'],
         alt: 'Museum Fridericianum Stadt Kassel',

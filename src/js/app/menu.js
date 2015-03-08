@@ -63,8 +63,6 @@ define([
 			background: 'background-press.jpg'
 		}],
 		customers: [{
-			label: 'Presse&shy;stimmen',
-			url: 'unsere-arbeiten/pressestimmen',
 			background: 'background-customers.jpg'
 		}],
 		contact: [{
@@ -153,7 +151,7 @@ define([
 				$('#nav-sub a:not(.mail-icon)').remove();
 				$('#nav-sub .tile:not(.hidden-greater-sm)').each(function(index) {
 					$(this).attr('class', 'tile'); // clear previous navs
-					if (index < subnavs.length) {
+					if (index < subnavs.length && subnavs[index].label) {
 						$(this).addClass(navItem)
 							.append('<a class="nav-link" href="#/' + subnavs[index].url + '">' + subnavs[index].label + '</a>');
 						if (subNavIndex == index) {
@@ -256,7 +254,7 @@ define([
 	};
 
 	var bindScrollButtons = function() {
-		var scroller = $('.content-scroller');
+		var scroller = $('.content-scroller:visible');
 		$('.scroll-up').prop('disabled', true);
 		$('.scroll-down').prop('disabled', false);
 		if (scroller.length) {
@@ -278,8 +276,8 @@ define([
 	}
 	
 	var bindSlideButtons = function() {
-		var slideIdx = 1;
-		var slider = $('.content-slider');
+		var slideIdx = 0;
+		var slider = $('.content-slider:visible');
 		var maxIdx = $('.sliding-list li').length;
 		function prev(idx, num) {
 			return (idx - num) >= 0 ? (idx - num) : (idx - num + maxIdx);
@@ -418,8 +416,21 @@ define([
 				y = (y < maxY) ? y : maxY;
 				scroller.scrollTop(y);
 			});
+		},
+
+		/**
+		 * Läd Bilder in den Browsercache
+		 * @param {Array} imageUrls die URLs der Bilder die zu cachen sind
+		 */
+		preloadImages: function (imageUrls) {
+			var images = [];
+			imageUrls.forEach(function(url, index) {
+				images.push(new Image());
+				images[index].src = url;
+			})
 		}
 	};
+
 
 	return Menu;
 });

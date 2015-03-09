@@ -274,17 +274,20 @@ define([
 			$('.scroll-buttons').hide();
 		}
 	}
-	
+
 	var bindSlideButtons = function() {
 		var slideIdx = 0;
 		var slider = $('.content-slider:visible');
 		var maxIdx = $('.sliding-list li').length;
+
 		function prev(idx, num) {
 			return (idx - num) >= 0 ? (idx - num) : (idx - num + maxIdx);
 		}
+
 		function next(idx, num) {
 			return (idx + num) < maxIdx ? (idx + num) : (idx + num - maxIdx);
 		}
+
 		function slidePics(slideIdx) {
 			$('.sliding-list li').each(function(index) {
 				var item = $(this);
@@ -314,10 +317,19 @@ define([
 			$('.slide-left').click(function() {
 				slideIdx = prev(slideIdx, 1);
 				slidePics(slideIdx);
+				// finden wir ein Touchscreen, dann rufen wir tooltip('show') direkt auf
+				if (Modernizr.touch) {
+					$('.slided-middle img:eq(0)').tooltip('show');
+					$('.slided-right img:eq(0)').tooltip('hide');
+				}
 			});
 			$('.slide-right').click(function() {
 				slideIdx = next(slideIdx, 1);
 				slidePics(slideIdx);
+				if (Modernizr.touch) {
+					$('.slided-middle img:eq(0)').tooltip('show');
+					$('.slided-left img:eq(0)').tooltip('hide');
+				}
 			});
 		} else {
 			$('.slide-buttons').hide();
@@ -422,7 +434,7 @@ define([
 		 * Läd Bilder in den Browsercache
 		 * @param {Array} imageUrls die URLs der Bilder die zu cachen sind
 		 */
-		preloadImages: function (imageUrls) {
+		preloadImages: function(imageUrls) {
 			var images = [];
 			imageUrls.forEach(function(url, index) {
 				images.push(new Image());

@@ -7,35 +7,45 @@
 .tile-table {
 	position: relative;
 	margin: 0 auto;
+	top: 0;
+
 	@media (min-width: $screen-lg-min) {
-		top: 10%;
 		width: $tile-width-lg * 8 + $tile-border-width;
 		height: $tile-width-lg * 6 + $tile-border-width;
 		.blind {
 			width: $tile-width-lg + $tile-border-width;
 			height: $tile-width-lg + $tile-border-width;
 		}
+		@media (min-height: $tile-width-lg * 6 + $tile-border-width) {
+			top: 50%;
+			@include translate(0, -50%);
+		}
 	}
 	@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
-		top: 10%;
 		width: $tile-width-md * 8 + $tile-border-width;
 		height: $tile-width-md * 6 + $tile-border-width;
 		.blind {
 			width: $tile-width-md + $tile-border-width;
 			height: $tile-width-md + $tile-border-width;
 		}
+		@media (min-height: $tile-width-md * 6 + $tile-border-width) {
+			top: 50%;
+			@include translate(0, -50%);
+		}
 	}
 	@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-		top: 10%;
 		width: $tile-width-sm * 8 + $tile-border-width;
 		height: $tile-width-sm * 6 + $tile-border-width;
 		.blind {
 			width: $tile-width-sm + $tile-border-width;
 			height: $tile-width-sm + $tile-border-width;
 		}
+		@media (min-height: $tile-width-sm * 6 + $tile-border-width) {
+			top: 50%;
+			@include translate(0, -50%);
+		}
 	}
 	@media (max-width: $screen-xs-max) {
-		top: 0;
 		width: $tile-width-xs * 8 + $tile-border-width;
 		height: $tile-width-xs * 5 + $tile-border-width;
 		.blind {

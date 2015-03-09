@@ -144,22 +144,6 @@ define([
                 // nur für die partner.html laden wir die Bootstrap-Tooltips
                 if (subIndex == 4) {
                     $('[data-toggle="tooltip"]').tooltip();
-
-                    // finden wir ein Touchscreen, dann rufen wir tooltip('show') direkt auf
-                    if (Modernizr.touch) {
-                        $('.nondeco-list a:eq(0)').tooltip('show');
-                        $('.content-scroller').scroll(function() {
-                            percentage = Math.round($('.content-scroller').scrollTop() / ($('.nondeco-list').height()- $('.content-scroller').height() + 10) * 100);
-                            anchorIndex = (percentage >= 100) ? (numImages - 1) : Math.floor(percentage / percentileBracket);
-                            $('[data-toggle="tooltip"]').each(function(i) {
-                                if (i == anchorIndex) {
-                                    $(this).tooltip('show');
-                                } else {
-                                    $(this).tooltip('hide');
-                                }
-                            })
-                        })
-                    }
                 }
             });
 
